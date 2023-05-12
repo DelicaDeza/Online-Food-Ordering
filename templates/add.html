@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a Food Item</title>
+</head>
+<body>
+    <h1>Add a Food Item</h1>
+    <form method="POST" action="{{ url_for('add') }}">
+        <label>Name</label><br>
+        <input type="text" name="name"><br>
+        <label>Description</label><br>
+        <textarea name="description"></textarea><br>
+        <label>Price
+            <input type="text" name="price">
+        </label><br>
+        <input type="submit" name="submit">
+    </form>
+</body>
+</html>
+```
+
