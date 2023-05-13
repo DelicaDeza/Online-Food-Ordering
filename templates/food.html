@@ -8,13 +8,22 @@
     />
     <link rel="stylesheet" href="static/css/food.css" />
     <link rel="stylesheet" href="static/css/navbar.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   </head>
   <body>
     <div class="navcontainer">
@@ -54,11 +63,16 @@
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
-        style="width: 100%;"
+        style="width: 100%"
       >
         Select Canteen
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" onmouseenter="this.classList.add('show')" onmouseleave="this.classList.remove('show')">
+      <div
+        class="dropdown-menu"
+        aria-labelledby="dropdownMenuButton"
+        onmouseenter="this.classList.add('show')"
+        onmouseleave="this.classList.remove('show')"
+      >
         {% for canteen1 in canteen %}
         <a class="dropdown-item" href="#">{{ canteen1.name }}</a>
         {% endfor %}
@@ -66,12 +80,19 @@
     </div>
 
     <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search for food items...">
-      <a href = "#" id= "search-button"><label for="search-input" id="search-button"><span class="material-icons" style="vertical-align: middle">search</span></label></a>
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search for food items..."
+      />
+      <a href="#" id="search-button"
+        ><label for="search-input" id="search-button"
+          ><span class="material-icons" style="vertical-align: middle"
+            >search</span
+          ></label
+        ></a
+      >
     </div>
-    
-    
-    
 
     <div class="container">
       {% for canteen1 in canteen %}
@@ -101,7 +122,7 @@
             </button>
             <div
               class="input-group input-group-sm input-quantity"
-              style="display: none; width: 50%; margin: auto;"
+              style="display: none; width: 50%; margin: auto"
             >
               <div class="input-group-prepend">
                 <button class="btn btn-outline-danger btn-minus" type="button">
@@ -113,7 +134,11 @@
                 class="form-control input-quantity-value"
                 value="1"
                 readonly
-                style="border:none; background-color: transparent;text-align: center;"
+                style="
+                  border: none;
+                  background-color: transparent;
+                  text-align: center;
+                "
               />
               <div class="input-group-append">
                 <button class="btn btn-outline-success btn-plus" type="button">
@@ -128,7 +153,6 @@
       {% endfor %}
     </div>
 
-  
     <script>
       $(document).ready(function () {
         $(".dropdown-item").on("click", function () {
@@ -139,70 +163,78 @@
         });
       });
       $(document).ready(function () {
-  $(".btn-add").on("click", function () {
-    var maxQuantity = parseInt($(this).data("max"));
-    $(this).hide();
-    var quantityInput = $(this).siblings(".input-quantity");
-    quantityInput.show();
-    var quantityValue = quantityInput.find(".input-quantity-value");
-    var minusButton = quantityInput.find(".btn-minus");
-    var plusButton = quantityInput.find(".btn-plus");
-    var quantity = parseInt(quantityValue.val());
-    minusButton.prop("disabled", quantity <= 1);
-    plusButton.prop("disabled", quantity >= maxQuantity);
-  });
+        $(".btn-add").on("click", function () {
+          var maxQuantity = parseInt($(this).data("max"));
+          $(this).hide();
+          var quantityInput = $(this).siblings(".input-quantity");
+          quantityInput.show();
+          var quantityValue = quantityInput.find(".input-quantity-value");
+          var minusButton = quantityInput.find(".btn-minus");
+          var plusButton = quantityInput.find(".btn-plus");
+          var quantity = parseInt(quantityValue.val());
+          minusButton.prop("disabled", quantity <= 1);
+          plusButton.prop("disabled", quantity >= maxQuantity);
+        });
 
-  $(".btn-minus").on("click", function () {
-    var quantityInput = $(this).closest(".input-quantity");
-    var quantityValue = quantityInput.find(".input-quantity-value");
-    var minusButton = quantityInput.find(".btn-minus");
-    var plusButton = quantityInput.find(".btn-plus");
-    var quantity = parseInt(quantityValue.val());
-    quantity--;
-    quantityValue.val(quantity);
-    minusButton.prop("disabled", quantity <= 0);
-    plusButton.prop("disabled", quantity >= parseInt(quantityInput.siblings(".btn-add").data("max")));
-  });
+        $(".btn-minus").on("click", function () {
+          var quantityInput = $(this).closest(".input-quantity");
+          var quantityValue = quantityInput.find(".input-quantity-value");
+          var minusButton = quantityInput.find(".btn-minus");
+          var plusButton = quantityInput.find(".btn-plus");
+          var quantity = parseInt(quantityValue.val());
+          quantity--;
+          quantityValue.val(quantity);
+          minusButton.prop("disabled", quantity <= 0);
+          plusButton.prop(
+            "disabled",
+            quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
+          );
+        });
 
-  $(".btn-plus").on("click", function () {
-    var quantityInput = $(this).closest(".input-quantity");
-    var quantityValue = quantityInput.find(".input-quantity-value");
-    var minusButton = quantityInput.find(".btn-minus");
-    var plusButton = quantityInput.find(".btn-plus");
-    var quantity = parseInt(quantityValue.val());
-    quantity++;
-    quantityValue.val(quantity);
-    minusButton.prop("disabled", quantity <= 1);
-    plusButton.prop("disabled", quantity >= parseInt(quantityInput.siblings(".btn-add").data("max")));
-  });
-});
+        $(".btn-plus").on("click", function () {
+          var quantityInput = $(this).closest(".input-quantity");
+          var quantityValue = quantityInput.find(".input-quantity-value");
+          var minusButton = quantityInput.find(".btn-minus");
+          var plusButton = quantityInput.find(".btn-plus");
+          var quantity = parseInt(quantityValue.val());
+          quantity++;
+          quantityValue.val(quantity);
+          minusButton.prop("disabled", quantity <= 1);
+          plusButton.prop(
+            "disabled",
+            quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
+          );
+        });
+      });
 
-$(document).ready(function () {
-  // Search when button is clicked
-  $("#search-button").on("click", function () {
-    var searchValue = $("#search-input").val().toLowerCase().replace(/\s+/g, '');
-    $(".food-item").each(function() {
-      var itemID = $(this).attr('id');
-      var isMatched = itemID.includes(searchValue);
-      console.log(itemID + " includes " + searchValue + " : " + isMatched);
-      if (isMatched) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-  });
-  
-  // Search when enter key is pressed
-  $("#search-input").on("keypress", function (e) {
-    if (e.keyCode == 13) {
-      $("#search-button").click();
-    }
-  });
-});
+      $(document).ready(function () {
+        // Search when button is clicked
+        $("#search-button").on("click", function () {
+          var searchValue = $("#search-input")
+            .val()
+            .toLowerCase()
+            .replace(/\s+/g, "");
+          $(".food-item").each(function () {
+            var itemID = $(this).attr("id");
+            var isMatched = itemID.includes(searchValue);
+            console.log(
+              itemID + " includes " + searchValue + " : " + isMatched
+            );
+            if (isMatched) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        });
 
-
-
+        // Search when enter key is pressed
+        $("#search-input").on("keypress", function (e) {
+          if (e.keyCode == 13) {
+            $("#search-button").click();
+          }
+        });
+      });
     </script>
   </body>
 </html>
