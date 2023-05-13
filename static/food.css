@@ -7,6 +7,7 @@ body {
   background-attachment: fixed;
   font-family: 'Jost', sans-serif;
 }
+/* overlay for background */
 body::before {
   content: "";
   position: fixed;
@@ -17,7 +18,7 @@ body::before {
   background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black color */
   z-index: -1;
 }
-
+/* overlay for food images */
 .overlay {
   position: fixed;
   top: 0;
@@ -27,7 +28,7 @@ body::before {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
-
+/* food container */
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -36,7 +37,7 @@ body::before {
   padding-top: 2%;
   transition: all 0.4s ease-in-out;
 }
-
+/* each food box */
 .food-item {
   background-color: #f8f9fa;
   border-radius: 30px;
@@ -104,6 +105,7 @@ body::before {
 .food-item:hover {
   transform: scale(1.1);
 }
+/*food name */
 
 h3 {
   color: #545454;
@@ -123,7 +125,7 @@ p {
   color: rgb(82, 82, 82);
 }
 
-
+/* move down food box on hover */
 
 .dropdown:hover ~ .container {
   margin-top: 120px;
@@ -142,70 +144,80 @@ p {
   justify-content: center;
   align-items: center;
   z-index: 2;
-  text-align: center; /* add this */
+  text-align: center; 
 }
 /* Fix dropdown menu display */
 .dropdown-menu {
   display: none;
   position: absolute;
   z-index: 1;
-  left: 50%; /* add this */
-  transform: translateX(-50%); /* add this */
+  left: 50%; 
+  transform: translateX(-50%); 
   width: 35%;
 }
 
-/* on hover display dropdown only on button not div */
 .dropdown button:hover + .dropdown-menu {
   display: block;
 }
-/* .dropdown-toggle {
-  background-color: transparent !important;
-  border-color: transparent !important;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2) !important;
-  color: #fff !important;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.2) !important;
-} */
-
-/* .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border: none !important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
-} */
 
 .btn.dropdown-toggle {
   background-color: transparent !important;
   border: none !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
 }
+/* search bar */
+
 .search-container {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
+  position: absolute;
+  right: 3%;
+  padding: 10px;
 }
 
 #search-input {
-  width: 70%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+  padding: 10px 30px 10px 10px;
   border: none;
-  border-bottom: 2px solid #ccc;
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  width: 200px;
+  outline: none;
 }
 
-#search-button {
-  width: 20%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+#search-input::-webkit-search-decoration,
+#search-input::-webkit-search-cancel-button,
+#search-input::-webkit-search-results-button,
+#search-input::-webkit-search-results-decoration {
+  display: none;
 }
 
+#search-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
 
+#search-input[type="search"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 
+#search-input[type="search"]::-webkit-search-icon {
+  position: relative;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#search-input[type="search"]::-moz-search-clear {
+  display: none;
+}
+/* search icon */
+.material-icons{
+  color: #a9a9a9;
+  vertical-align: middle;
+  text-decoration: none;
+  cursor:pointer;
+}
 
 .active {
   background-color: #4caf50;
