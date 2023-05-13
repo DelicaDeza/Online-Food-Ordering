@@ -1,7 +1,7 @@
 body {
   /* insert a background image with a url */
   background-image: url("https://e0.pxfuel.com/wallpapers/421/825/desktop-wallpaper-mexican-food-background-seamless-food-delivery-stepone-for-your-mobile-tablet-explore-mexican-food-mexican-for-walls-mexican-style-mexicans-with-attitude.jpg");
-  overflow: hidden;
+  overflow-x: hidden;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -32,10 +32,11 @@ body::before {
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   padding-top: 2%;
   transition: all 0.4s ease-in-out;
+  max-width: 100%;
 }
 /* each food box */
 .food-item {
@@ -47,11 +48,13 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   padding: 5px;
   transition: transform 0.2s ease-in-out;
   position: relative;
 }
 .food-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,33 +64,38 @@ body::before {
 }
 .food-list {
   display: flex;
-  /* flex-wrap: wrap;
-  justify-content: space-between; */
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 
 .food-image {
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   object-fit: cover;
-  margin-bottom: 10px;
   background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
 }
 .food-name {
   font-size: 24px;
   text-align: center;
+  margin-top: 5%;
+  margin-bottom: 0;
 }
 
 
 .food-price {
-  font-size: 18px;
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
   text-align: center;
 }
 
 .food-image-overlay {
   position: relative;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   overflow: hidden;
 }
 
@@ -138,8 +146,8 @@ p {
 .dropdown {
   position: relative;
   top: 10px;
-  left: 0;
-  width: 100%;
+  margin-left:50%;
+  transform: translateX(-50%);
   display: inline-block;
   justify-content: center;
   align-items: center;
@@ -153,7 +161,7 @@ p {
   z-index: 1;
   left: 50%; 
   transform: translateX(-50%); 
-  width: 35%;
+  width: 100%;
 }
 
 .dropdown button:hover + .dropdown-menu {
@@ -169,8 +177,9 @@ p {
 
 .search-container {
   position: absolute;
-  right: 3%;
-  padding: 10px;
+  right: 6%;
+  padding: 20px;
+  display: inline-block;
 }
 
 #search-input {
