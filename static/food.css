@@ -129,7 +129,7 @@ p {
   margin-top: 120px;
 }
 
-.dropdown:hover ~ .container .food-item {
+.btn.dropdown-toggle ~ .container .food-item {
   transform: translateY(2%);
 }
 
@@ -158,6 +158,27 @@ p {
 .dropdown button:hover + .dropdown-menu {
   display: block;
 }
+/* .dropdown-toggle {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2) !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2) !important;
+} */
+
+/* .dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+} */
+
+.btn.dropdown-toggle {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+
 
 .active {
   background-color: #4caf50;

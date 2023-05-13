@@ -51,11 +51,11 @@
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
-        style="width: 35%"
+        style="width: 35%;"
       >
         Select Canteen
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" onmouseenter="this.classList.add('show')" onmouseleave="this.classList.remove('show')">
         {% for canteen1 in canteen %}
         <a class="dropdown-item" href="#">{{ canteen1.name }}</a>
         {% endfor %}
