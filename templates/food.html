@@ -62,16 +62,22 @@
       </div>
     </div>
 
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search for food items...">
+      <button type="button" id="search-button">Search</button>
+    </div>
+    
+
     <div class="container">
       {% for canteen1 in canteen %}
       <div
-        id="{{ canteen1.name|replace(' ', '_') }}"
+        id="{{ canteen1.name|replace(' ', '_')}}"
         class="food-list"
         style="display: none"
       >
         {% for food in food_items %} {% if food.canteensid ==
         canteen1.idcanteens %}
-        <div class="food-item">
+        <div class="food-item" id="{{ food.name|replace(' ', '') |lower}}">
           <div class="food-image-overlay">
             <img
               src="{{ food.image }}"
@@ -163,6 +169,22 @@
     quantityValue.val(quantity);
     minusButton.prop("disabled", quantity <= 1);
     plusButton.prop("disabled", quantity >= parseInt(quantityInput.siblings(".btn-add").data("max")));
+  });
+});
+
+$(document).ready(function () {
+  $("#search-button").on("click", function () {
+    var searchValue = $("#search-input").val().toLowerCase().replace(/\s+/g, '');;
+    $(".food-item").each(function() {
+      var itemID = $(this).attr('id');
+      var isMatched = itemID.includes(searchValue);
+      console.log(itemID + " includes " + searchValue + " : " + isMatched);
+      if (isMatched) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
   });
 });
 
