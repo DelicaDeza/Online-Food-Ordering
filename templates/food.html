@@ -26,35 +26,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="navcontainer">
-      <div class="row">
-        <div class="col-2"></div>
-        <nav class="navbar navbar-expand-lg bg-light col mt-4">
-          <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-                <li class="nav-item">
-                  <a class="nav-link">DelicaDeza</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html">about</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="portfolio.html">portfolio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">contact</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="col-2"></div>
-      </div>
-    </div>
+    {% include 'navbar.html' %}
     <div class="dropdown" style="margin-top: 20px">
       <button
         class="btn btn-secondary dropdown-toggle"
