@@ -3,6 +3,7 @@ from models import db,cartitem
 from food_menu import foodmenu
 from login import index
 from forgot import forgot_password
+from signup import create_account
 app = Flask(__name__)
 app.secret_key = 'your-secret-key' 
 
@@ -26,7 +27,9 @@ def add_to_cart():
     db.session.add(item)
     db.session.commit()
     return jsonify({"success": True})
-
+@app.route('/create_account', methods=['POST'])
+def signup():
+    return create_account(db)
 @app.route('/', methods=['GET', 'POST'])
 def login():
     return index()
