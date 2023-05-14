@@ -89,6 +89,7 @@
             <button
               class="btn btn-outline-primary btn-add"
               data-max="{{ food.quantity }}"
+              onclick="addToCart('{{ food.name }}', '{{ food.netcost }}', $('#quantity-input').val())"
             >
               Add
             </button>
@@ -207,6 +208,24 @@
           }
         });
       });
+      function addToCart(name, netcost, quantity) {
+        $.ajax({
+          url: "/api/cart",
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({
+            name: name,
+            netcost: netcost,
+            quantity: quantity,
+          }),
+          success: function (response) {
+            alert("Item added to cart!");
+          },
+          error: function (xhr, status, error) {
+            alert("Error adding item to cart: " + error);
+          },
+        });
+      }
     </script>
   </body>
 </html>

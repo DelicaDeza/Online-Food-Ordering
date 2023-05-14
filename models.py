@@ -21,3 +21,9 @@ class fooditems(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     canteensid = db.Column(db.Integer, db.ForeignKey('canteen.id'), nullable=False)
     image = db.Column(db.String(120),nullable=False)
+
+class cartitem(db.Model):
+    idcart = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    netcost = db.Column(db.Float, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
