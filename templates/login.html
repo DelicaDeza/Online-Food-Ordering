@@ -103,7 +103,24 @@ button:hover{
 	width: 100%;
 	margin-top: 6%; /* Optional: Add some spacing below the ruler */
 }
+.login .stay-signed-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	margin-bottom: 20px;
+}
+.stay-signed-in {
+  display: inline-block;
+  align-items: center;
+  margin-top: 10px;
+}
 
+.stay-signed-in label {
+  margin-left: 5px;
+}
+.stay-signed-in input[type="checkbox"] {
+    margin-right: 5px;
+}
   </style>
 
 </head>
@@ -120,10 +137,14 @@ button:hover{
 
 			<div class="login">
 				<form method="post" action="/">
-					<label for="chk" aria-hidden="true">Login</label>
+					<label for="chk" aria-hidden="true" style="margin-bottom: 20px;">Login</label>
 					<input type="email" name="email" placeholder="Email" required="">
 					<input type="password" name="pswd" placeholder="Password" required="">
 					<button>Login</button>
+					<div class="stay-signed-in"style="vertical-align: middle;">
+						<input type="checkbox" value = "true" id="stay_logged_in" name="stay_logged_in" style="margin: 0px; width: auto; margin-right: 2%;">
+						<label for="stayLoggedIn"style="margin: 0px; font-size: 16px">Stay Logged In</label>
+					</div>
 					<a href="forgot.html">Forgot Password?</a>
 					<div class="ruler"></div>
 					<h4>New User?</h4>

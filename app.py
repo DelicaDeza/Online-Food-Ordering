@@ -4,11 +4,14 @@ from food_menu import foodmenu
 from login import index
 from forgot import forgot_password
 from signup import create_account
-app = Flask(__name__)
-app.secret_key = 'your-secret-key' 
+from datetime import timedelta
 
 def create_app():
+    app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:root@localhost:3306/food'
+    app.secret_key = 'your-secret-key' 
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)
     db.init_app(app)
     return app
 
@@ -32,7 +35,7 @@ def signup():
     return create_account(db)
 @app.route('/', methods=['GET', 'POST'])
 def login():
-    return index()
+    return index(app)
 @app.route('/forgot.html', methods=['GET', 'POST'])
 def forgot():
     return forgot_password(db)
