@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" title="Status">
+
+<head>
+    <title>Cart Status</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="static/css/food.css" />
+  <link rel="stylesheet" href="static/css/navbar.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+        {% include 'navbar.html' %}
+    <main class="table">
+        <section class="table__header">
+            <h1><b>Cart Summary:</b></h1>
+            <div class="input-group">
+                <input type="search" placeholder="Search Data...">
+            </div>
+            <div class="export__file">
+                <label for="export-file" class="export__file-btn" title="Export File"></label>
+                <input type="checkbox" id="export-file">
+                <img src="images/search.png" alt="">
+                
+
+            </div>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <tr>
+                            <tr>
+                                <th> ID <span class="icon-arrow">&UpArrow;</span></th>
+
+                                <th> Status <span class="icon-arrow">&UpArrow;</span></th>
+                                <th> Summary <span class="icon-arrow">&UpArrow;</span></th>
+
+                            </tr>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for displaystatus in displaystatus %}
+
+
+                    <tr>
+                        <td> {{ displaystatus.order_id }}</td>
+                        <td> {% if displaystatus.order_status=="Ready!" %}
+                            <p class="status delivered">{{ displaystatus.order_status }} </p>
+                            {% elif displaycart.order_status=="Preparing!" %}
+                            <p class="status pending">{{ displaystatus.order_status }} </p>
+                            {% else %}
+                            <p class="status shipped">{{ displaystatus.order_status }} </p>
+                            {% endif %} 
+                            <script>
+                                if ("{{ displaystatus.order_status }}" === "Preparing!") {
+                                  console.log("Order is ready!");
+                                }
+                              </script></td> 
+
+                            <td> <div class="dropdown">
+                                
+                                <img src="../static/images/view.png" onclick="toggleDropdown('dropdownContent')">
+                                {% for displaycart in displaycart %}
+                                <div id="dropdownContent">
+
+                                   
+                                    
+                                    
+                                   
+                                   
+                                    <a href="#" style="color:black" ><strong>{{ displaycart.product_name}}</strong></a>
+                                    <a href="#" style="color:black" ><strong>{{ displaycart.product_quantity }} *</strong></a>
+                                    <a href="#" style="color:black" > <strong>{{ displaycart.product_cost}} = </strong></a> 
+                                    <a href="#" style="color:black" ><strong>{{ displaycart.total_productcost }}</strong></a><br>
+                               
+
+                            {% endfor %}
+                        </div>
+                            <!-- {% for i in displaycart %}
+
+                            <img src="../static/images/view.png" onclick="toggleDropdown()">    
+                            <a href="#" style="color:black" ><strong>{{i.product_name}}</strong></a>
+                            <a href="#" style="color:black" ><strong>{{ i.product_quantity }} *</strong></a>
+                            <a href="#" style="color:black" > <strong>{{ i.product_cost}} = </strong></a> 
+                            <a href="#" style="color:black" ><strong>{{ i.total_productcost }}</strong></a><br>
+                                
+                            {% endfor %} -->
+                                
+                            </div></td>
+
+                 </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td>      <button class="glow-on-hover" type="button">Check Out!</button></td> 
+                    </tr>
+
+
+                    
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>function toggleDropdown(x) {
+        var dropdownContent = document.getElementById(x);
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    }</script>
+</body>
+
+</html>

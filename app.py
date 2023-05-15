@@ -6,6 +6,7 @@ from forgot import forgot_password
 from signup import create_account
 from datetime import timedelta
 from functools import wraps
+from cartstatus import statusmenu
 
 def create_app():
     app = Flask(__name__)
@@ -61,8 +62,10 @@ def forgot():
 def logout():
     # Clear the email from the session
     session.pop('email', None)
+@app.route('/status.html')
+def cart():
+    return statusmenu()
 
-    
 if __name__ == '__main__':
     app.run(debug=True)
 
