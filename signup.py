@@ -3,7 +3,9 @@ from models import users
 from sqlalchemy import or_
 
 def create_account(db):
-    # Retrieve the form data
+    # Retrieve the create.html form data
+    if request.method != 'POST':
+        return render_template('create.html')
     username = request.form.get('username')
     email = request.form.get('email')
     phone_number = request.form.get('phoneNumber')
@@ -29,8 +31,7 @@ def create_account(db):
             'email': email,
             'phone_number': phone_number
         }
-
-        # Redirect to vexx.html after successful account creation
-        return redirect('/vexx.html')
+        #print response
 
     return jsonify(response)
+    return render_template('create.html')

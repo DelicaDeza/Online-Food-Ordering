@@ -93,7 +93,7 @@
     <div class="main">
         <h2>SIGN UP</h2>
         <div class="form-container">
-            <form id="accountForm" action="/create_account" method="POST">
+            <form id="accountForm" method="POST">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 
@@ -110,19 +110,19 @@
                     <input type="checkbox" id="stayLoggedIn" name="stayLoggedIn">
                     <label for="stayLoggedIn">Stay Logged In</label>
                 </div>
-                <button type="button" onclick="showOTPForm()" id="createAccountBtn" disabled>SIGN UP</button>
+                <button type="submit" id="createAccountBtn" disabled>SIGN UP</button>
             </form>
         </div>
     </div>
     <script>
-    function showOTPForm() {
-        document.getElementById("accountForm").style.display = "none";
-        var mainContainer = document.querySelector('.main');
-        var formContainer = document.querySelector('.form-container');
+    // function showOTPForm() {
+    //     document.getElementById("accountForm").style.display = "none";
+    //     var mainContainer = document.querySelector('.main');
+    //     var formContainer = document.querySelector('.form-container');
 
 
-        window.location.href = "vexx.html"; 
-    }
+    //     window.location.href = "vexx.html"; 
+    // }
 
     function isValidPhoneNumber(phoneNumber) {
         // Regex pattern to validate phone number (10 digits)

@@ -30,10 +30,10 @@ def add_to_cart():
     db.session.add(item)
     db.session.commit()
     return jsonify({"success": True})
-@app.route('/create_account', methods=['POST'])
+@app.route('/create.html', methods=['GET','POST'])
 def signup():
     return create_account(db)
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/login.html', methods=['GET', 'POST'])
 def login():
     return index(app)
 @app.route('/forgot.html', methods=['GET', 'POST'])
