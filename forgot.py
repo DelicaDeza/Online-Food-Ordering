@@ -7,14 +7,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 def forgot_password(db):
-    # app = Flask(__name__)
-    # app.config['SECRET_KEY'] = 'your-secret-key-here'
-    # app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    # app.config['MAIL_PORT'] = 587
-    # app.config['MAIL_USE_TLS'] = True
-    # app.config['MAIL_USERNAME'] = 'your-email-address-here'
-    # app.config['MAIL_PASSWORD'] = 'your-email-password-here'
-    # mail = Mail(app)
+    app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'your-secret-key-here'
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = 'dollargok254@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'ztshxmbixudxrzgn'
+    mail = Mail(app)
     if request.method == 'POST':
         email = request.form['email']
         # Check if email exists in the users table
@@ -26,9 +26,9 @@ def forgot_password(db):
             user.password = new_password
             db.session.commit()
             # Send the new password to the user's email
-            # msg = Message('Your new password', sender='your-email-address-here', recipients=[email])
-            # msg.body = f'Your new password is: {new_password}'
-            # mail.send(msg)
+            msg = Message('Your new password', sender='your-email-address-here', recipients=[email])
+            msg.body = f'Your new password is: {new_password}'
+            mail.send(msg)
             return 'An email with your new password has been sent.'
         else:
             return 'Email not found.'
