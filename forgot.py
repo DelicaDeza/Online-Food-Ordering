@@ -6,14 +6,14 @@ from models import users
 from flask_sqlalchemy import SQLAlchemy
 
 
-def forgot_password(db):
-    app = Flask(__name__)
+def forgot_password(app,db):
+    # app = Flask(__name__)
     app.config['SECRET_KEY'] = 'your-secret-key-here'
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = 'dollargok254@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'ztshxmbixudxrzgn'
+    app.config['MAIL_USERNAME'] = 'delicadezaaa@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'wxeosqldsqtxaggr'
     mail = Mail(app)
     if request.method == 'POST':
         email = request.form['email']

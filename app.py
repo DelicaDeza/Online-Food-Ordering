@@ -56,7 +56,7 @@ def login():
 
 @app.route('/forgot.html', methods=['GET', 'POST'])
 def forgot():
-    return forgot_password(db)
+    return forgot_password(app,db)
 
 @app.route('/logout')
 def logout():
