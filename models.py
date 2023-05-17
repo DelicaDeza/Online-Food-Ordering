@@ -35,7 +35,6 @@ class cart(db.Model):
     product_name = db.Column(db.String(80), unique=True, nullable=False)
     product_cost = db.Column(db.Integer, nullable=False)
     product_quantity = db.Column(db.Integer, nullable=False)
-    total_productcost= db.Column(db.Integer, nullable=False)
     status_id = db.Column(db.Integer, db.ForeignKey('status.order_id'), nullable=False)
 class status(db.Model):
     order_id = db.Column(db.Integer, primary_key=True)
