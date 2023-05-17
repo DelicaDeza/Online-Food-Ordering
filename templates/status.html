@@ -24,13 +24,6 @@
             <div class="input-group">
                 <input type="search" placeholder="Search Data...">
             </div>
-            <div class="export__file">
-                <label for="export-file" class="export__file-btn" title="Export File"></label>
-                <input type="checkbox" id="export-file">
-                <img src="images/search.png" alt="">
-                
-
-            </div>
         </section>
         <section class="table__body">
             <table>
@@ -52,48 +45,35 @@
 
 
                     <tr>
-                        <td> {{ displaystatus.order_id }}</td>
-                        <td> {% if displaystatus.order_status=="Ready!" %}
-                            <p class="status delivered">{{ displaystatus.order_status }} </p>
-                            {% elif displaycart.order_status=="Preparing!" %}
-                            <p class="status pending">{{ displaystatus.order_status }} </p>
+                        <td>{{ displaystatus.order_id }}</td>
+                        <td>
+                            {% if displaystatus.order_status == "Ready!" %}
+                                <p class="status delivered">{{ displaystatus.order_status }}</p>
+                            {% elif displaystatus.order_status == "Preparing!" %}
+                                <p class="status pending">{{ displaystatus.order_status }}</p>
                             {% else %}
-                            <p class="status shipped">{{ displaystatus.order_status }} </p>
-                            {% endif %} 
+                                <p class="status shipped">{{ displaystatus.order_status }}</p>
+                            {% endif %}
                             <script>
                                 if ("{{ displaystatus.order_status }}" === "Preparing!") {
-                                  console.log("Order is ready!");
+                                    console.log("Order is ready!");
                                 }
-                              </script></td> 
-
-                            <td> <div class="dropdown">
-                                
-                                <img src="../static/images/view.png" onclick="toggleDropdown('dropdownContent')">
-                                {% for displaycart in displaycart %}
-                                <div id="dropdownContent">
-
-                                   
-                                    
-                                    
-                                   
-                                   
-                                    <a href="#" style="color:black" ><strong>{{ displaycart.product_name}}</strong></a>
-                                    <a href="#" style="color:black" ><strong>{{ displaycart.product_quantity }} *</strong></a>
-                                    <a href="#" style="color:black" > <strong>{{ displaycart.product_cost}} = </strong></a> 
-                                    <a href="#" style="color:black" ><strong>{{ displaycart.total_productcost }}</strong></a><br>
-                               
-
-                            {% endfor %}
-                        </div>
-                            <!-- {% for i in displaycart %}
-
-                            <img src="../static/images/view.png" onclick="toggleDropdown()">    
-                            <a href="#" style="color:black" ><strong>{{i.product_name}}</strong></a>
-                            <a href="#" style="color:black" ><strong>{{ i.product_quantity }} *</strong></a>
-                            <a href="#" style="color:black" > <strong>{{ i.product_cost}} = </strong></a> 
-                            <a href="#" style="color:black" ><strong>{{ i.total_productcost }}</strong></a><br>
-                                
-                            {% endfor %} -->
+                            </script>
+                        </td> 
+                        <td>
+                            <div class="dropdown">
+                                <i class="material-icons view-icon" onclick="toggleDropdown('{{ displaystatus.order_id }}')" id="viewIcon{{ displaystatus.order_id }}">visibility</i>
+                                <div id="dropdownContent{{ displaystatus.order_id }}" style="display: none;">
+                                    {% for displaycart1 in displaycart %}{% if displaycart1.status_id ==displaystatus.order_id %}
+                                        <a href="#" style="color:black" ><strong>{{ displaycart1.product_name }}</strong></a>
+                                        <a href="#" style="color:black" ><strong>{{ displaycart1.product_quantity }} *</strong></a>
+                                        <a href="#" style="color:black" ><strong>{{ displaycart1.product_cost }} = </strong></a> 
+                                        <a href="#" style="color:black" ><strong>{{ displaycart1.total_productcost }}</strong></a><br>
+                                    {% endif %} {% endfor %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                                 
                             </div></td>
 
@@ -114,14 +94,21 @@
             </table>
         </section>
     </main>
-    <script>function toggleDropdown(x) {
-        var dropdownContent = document.getElementById(x);
-        if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
-        } else {
-            dropdownContent.style.display = "block";
-        }
-    }</script>
+    <script>
+function toggleDropdown(orderId) {
+    var dropdownContent = document.getElementById('dropdownContent' + orderId);
+    var viewIcon = document.getElementById('viewIcon' + orderId);
+    
+    if (dropdownContent.style.display === 'block') {
+        dropdownContent.style.display = 'none';
+        viewIcon.innerText = 'visibility';
+    } else {
+        dropdownContent.style.display = 'block';
+        viewIcon.innerText = 'visibility_off';
+    }
+}
+
+    </script>
 </body>
 
 </html>
