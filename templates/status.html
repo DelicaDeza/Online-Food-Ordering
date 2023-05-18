@@ -1,121 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" title="Status">
-
-<head>
+  <head>
     <title>Cart Status</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <!-- <link rel="stylesheet" href="static/css/hello.css"> -->
+    <link rel="stylesheet" href="static/css/style.css" />
 
     <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
-  <link rel="stylesheet" href="static/css/food.css" />
-  <link rel="stylesheet" href="static/css/navbar.css" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="static/css/food.css" />
+    <link rel="stylesheet" href="static/css/navbar.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
 
-<body>
-        {% include 'navbar.html' %}
+  <body>
+    {% include 'navbar.html' %}
     <main class="table">
-        <section class="table__header">
-            <h1><b>Cart Summary:</b></h1>
-            <div class="input-group">
-                <input type="search" placeholder="Search Data...">
-            </div>
-        </section>
-        <section class="table__body">
-            <table>
-                <thead>
-                    <tr>
-                        <tr>
-                            <tr>
-                                <th> ID <span class="icon-arrow">&UpArrow;</span></th>
-
-                                <th> Status <span class="icon-arrow">&UpArrow;</span></th>
-                                <th> Summary <span class="icon-arrow">&UpArrow;</span></th>
-
-                            </tr>
-                        </tr>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for displaystatus in displaystatus %}
-
-
-                    <tr>
-                        <td>{{ displaystatus.order_id }}</td>
-                        <td>
-                            {% if displaystatus.order_status == "Ready!" %}
-                                <p class="status delivered">{{ displaystatus.order_status }}</p>
-                            {% elif displaystatus.order_status == "Preparing!" %}
-                                <p class="status pending">{{ displaystatus.order_status }}</p>
-                            {% else %}
-                                <p class="status shipped">{{ displaystatus.order_status }}</p>
-                            {% endif %}
-                        </td> 
-                        <td>
-                            <div class="dropdown">
-                                <i class="material-icons view-icon" onclick="toggleDropdown('{{ displaystatus.order_id }}')" id="viewIcon{{ displaystatus.order_id }}">visibility</i>
-                                <div id="dropdownContent{{ displaystatus.order_id }}" style="display: none;">
-                                    {% for displaycart1 in displaycart %}{% if displaycart1.status_id == displaystatus.order_id %}
-                                    <div class="product-details">
-                                        <i class="material-icons quantity-icon" style="color: #a37b7b;">layers</i>
-                                        <span class="quantity" style="color: #a37b7b;">{{ displaycart1.product_quantity }}</span>
-                                        <span class="product-name">{{ displaycart1.product_name }}</span>
-                                        <span class="product-info">
-                                            <span class="cost-symbol">&#8377;</span>
-                                            <span class="total-cost">{{ displaycart1.product_cost * displaycart1.product_quantity }}</span>
-                                        </span>
-                                    </div>
-                                    {% endif %} {% endfor %}
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            
-                            
-                        </td>
-                    </tr>
-                                
-                            </div></td>
-
-                 </tr>
-                    {% endfor %}
-
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td>  </td>
-                        <td>  </td>
-                        <td>      <button class="glow-on-hover" type="button">Check Out!</button></td> 
-                    </tr>
-
-
-                    
-                </tbody>
-            </table>
-        </section>
+      <section class="table__header">
+        <h1><b>Cart Summary:</b></h1>
+        <div class="input-group">
+          <input type="search" placeholder="Search Data..." />
+        </div>
+      </section>
+      <section class="table__body">
+        <table>
+          <thead>
+            <tr>
+              <th>ID <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Status <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Summary <span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for displaystatus in displaystatus %}
+            <tr>
+              <td>{{ displaystatus.order_id }}</td>
+              <td>
+                {% if displaystatus.order_status == "Ready!" %}
+                <p class="status delivered">{{ displaystatus.order_status }}</p>
+                {% elif displaystatus.order_status == "Preparing!" %}
+                <p class="status pending">{{ displaystatus.order_status }}</p>
+                {% else %}
+                <p class="status shipped">{{ displaystatus.order_status }}</p>
+                {% endif %}
+              </td>
+              <td>
+                <div class="dropdown">
+                  <i
+                    class="material-icons view-icon"
+                    onclick="toggleDropdown('{{ displaystatus.order_id }}')"
+                    id="viewIcon{{ displaystatus.order_id }}"
+                    >visibility</i
+                  >
+                  <div
+                    id="dropdownContent{{ displaystatus.order_id }}"
+                    style="display: none"
+                  >
+                    {% for displaycart1 in displaycart %}{% if
+                    displaycart1.status_id == displaystatus.order_id %}
+                    <div class="product-details">
+                      <i
+                        class="material-icons quantity-icon"
+                        style="color: #a37b7b"
+                        >layers</i
+                      >
+                      <span class="quantity" style="color: #a37b7b"
+                        >{{ displaycart1.product_quantity }}</span
+                      >
+                      <span class="product-name"
+                        >{{ displaycart1.product_name }}</span
+                      >
+                      <span class="product-info">
+                        <span class="cost-symbol">&#8377;</span>
+                        <span class="total-cost"
+                          >{{ displaycart1.product_cost *
+                          displaycart1.product_quantity }}</span
+                        >
+                      </span>
+                    </div>
+                    {% endif %} {% endfor %}
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button class="glow-on-hover" type="button">Check Out!</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </main>
     <script>
-function toggleDropdown(orderId) {
-    var dropdownContent = document.getElementById('dropdownContent' + orderId);
-    var viewIcon = document.getElementById('viewIcon' + orderId);
-    
-    if (dropdownContent.style.display === 'block') {
-        dropdownContent.style.display = 'none';
-        viewIcon.innerText = 'visibility';
-    } else {
-        dropdownContent.style.display = 'block';
-        viewIcon.innerText = 'visibility_off';
-    }
-}
+      function toggleDropdown(orderId) {
+        var dropdownContent = document.getElementById(
+          "dropdownContent" + orderId
+        );
+        var viewIcon = document.getElementById("viewIcon" + orderId);
 
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          viewIcon.innerText = "visibility";
+        } else {
+          dropdownContent.style.display = "block";
+          viewIcon.innerText = "visibility_off";
+        }
+      }
     </script>
-</body>
-
+  </body>
 </html>

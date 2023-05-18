@@ -1,155 +1,115 @@
-<!-- 
-Responsive HTML Table With Pure CSS - Web Design/UI Design
+<!DOCTYPE html>
+<html lang="en" title="Cart">
+  <head>
+    <title>Cart page</title>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="static/css/food.css" />
+    <link rel="stylesheet" href="static/css/navbar.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
 
-Code written by:
-👨🏻‍⚕️ Coding Design (Jeet Saru)
+  <body>
+    {% include 'navbar.html' %}
+    <div class="dropdown" style="margin-top: 20px">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        style="width: 35%"
+      >
+        Cart
+      </button>
+    </div>
+    <main class="table">
+      <section class="table__header">
+        <h1><b>Cart Summary:</b></h1>
+        <div class="input-group">
+          <input type="search" placeholder="Search Data..." />
+        </div>
+      </section>
+      <section class="table__body">
+        <table id="table">
+          <thead>
+            <tr>
+              <th>ID <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Name<span class="icon-arrow">&UpArrow;</span></th>
+              <th>Quantity <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Unit Cost <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Total <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Edit <span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for displaycart in displaycart %}
+            <tr>
+              <td>{{ displaycart.product_id }}</td>
+              <td>{{ displaycart.product_name }}</td>
+              <td>{{ displaycart.product_quantity }}</td>
+              <td>{{ displaycart.product_cost}}</td>
+              <td>
+                {{ displaycart.product_cost * displaycart.product_quantity }}
+              </td>
+              <td>
+                <i
+                  class="material-icons delete-icon"
+                  onclick="deleteCartItem('{{ displaycart.product_id }}')"
+                  >delete</i
+                >
+              </td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{{total_price}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button class="glow-on-hover" type="button">Check Out!</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-> You can do whatever you want with the code. However if you love my content, you can **SUBSCRIBED** my YouTube Channel.
-
-🌎link: www.youtube.com/codingdesign 
- -->
- <!DOCTYPE html>
- <html lang="en" title="Coding design">
- 
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <title>Responsive HTML Table With Pure CSS - Web Design/UI Design</title>
-     <link rel="stylesheet" href="static/css/style.css">
-     <link
-     rel="stylesheet"
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-   />
-   <link rel="stylesheet" href="static/css/food.css" />
-   <link rel="stylesheet" href="static/css/navbar.css" />
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- </head>
- 
- <body>
-     <div class="navcontainer">
-         <div class="row">
-           <div class="col-2"></div>
-           <nav class="navbar navbar-expand-lg bg-light col mt-4">
-             <div class="container-fluid">
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-                   <li class="nav-item">
-                     <a class="nav-link">DelicaDeza</a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="index.html">home</a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="about.html">about</a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="portfolio.html">portfolio</a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="contact.html">contact</a>
-                   </li>
-                 </ul>
-               </div>
-             </div>
-           </nav>
-           <div class="col-2"></div>
-         </div>
-       <div class="dropdown" style="margin-top: 20px">
-         <button
-           class="btn btn-secondary dropdown-toggle"
-           type="button"
-           id="dropdownMenuButton"
-           data-toggle="dropdown"
-           aria-haspopup="true"
-           aria-expanded="false"
-           style="width: 35%;"
-         >
-           Cart
-         </button>
-     <main class="table">
-         <section class="table__header">
-             <h1><b>Cart Summary:</b></h1>
-             <div class="input-group">
-                 <input type="search" placeholder="Search Data...">
-             </div>
-             <div class="export__file">
-                 <label for="export-file" class="export__file-btn" title="Export File"></label>
-                 <input type="checkbox" id="export-file">
-                 <img src="images/search.png" alt="">
-                 
- 
-             </div>
-         </section>
-         <section class="table__body">
-             <table id="table">
-                 <thead>
-                     <tr>
-                         <th> ID <span class="icon-arrow">&UpArrow;</span></th>
-                         <th> Name<span class="icon-arrow">&UpArrow;</span></th>
-                         <th> Quantity <span class="icon-arrow">&UpArrow;</span></th>
-                         <th> Unit Cost <span class="icon-arrow">&UpArrow;</span></th>
-                         <!--<th> Status <span class="icon-arrow">&UpArrow;</span></th>-->
-                         <th> Total <span class="icon-arrow">&UpArrow;</span></th>
-                         <th> Edit <span class="icon-arrow">&UpArrow;</span></th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     {% for displaycart in displaycart %}
-                     <tr>
-                         <td> {{ displaycart.product_id }}</td>
-                         <td> {{ displaycart.product_name }} </td>
-                         <td> {{ displaycart.product_quantity }} </td>
-                         <td> {{ displaycart.product_cost}} </td>
-                         <td> {{ displaycart.total_productcost }} </td> 
-                         <td><img src="../static/images/cross.png" alt="Delete" > </td>
-                     </tr>
-                     {% endfor %}
-                     <tr>
-                       <td> </td>
-                       <td> </td>
-                       <td>  </td>
-                       <td>  </td>
-                       <td>     {{total_price}}</button></td> 
-                   </tr>
-                     <tr>
-                         <td> </td>
-                         <td> </td>
-                         <td>  </td>
-                         <td>  </td>
-                         <td>      <button class="glow-on-hover" type="button">Check Out!</button></td> 
-                     </tr>
- 
- 
-                     
-                 </tbody>
-             </table>
-             
-             <script>
-     
-               var index, table = document.getElementById('table');
-               for(var i = 1; i < table.rows.length; i++)
-               {
-                   table.rows[i].cells[5].onclick = function()
-                   {
-                       var c = confirm("do you want to delete this row");
-                       if(c === true)
-                       {
-                           index = this.parentElement.rowIndex;
-                           table.deleteRow(index);
-                       }
-                       
-                       //console.log(index);
-                   };
-                   
-               }
-       
-           </script>
-         </section>
-     </main>
- </body>
- 
- </html>
+        <script>
+          function deleteCartItem(product_id) {
+            $.ajax({
+              url: "/delete_item/" + product_id,
+              type: "POST",
+              success: function (response) {
+                // Handle the success response, such as removing the corresponding row from the table
+                console.log("Item deleted successfully");
+                location.reload();
+              },
+              error: function (error) {
+                // Handle the error response
+                console.log("Error deleting item:", error);
+              },
+            });
+          }
+        </script>
+      </section>
+    </main>
+  </body>
+</html>

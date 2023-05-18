@@ -4,6 +4,7 @@ import mysql.connector
 
 db = SQLAlchemy()
 
+
 class users(db.Model):
     idusers = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -16,13 +17,16 @@ class canteens(db.Model):
     idcanteens = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
 
+
 class fooditems(db.Model):
     idfooditems = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    canteensid = db.Column(db.Integer, db.ForeignKey('canteen.id'), nullable=False)
-    image = db.Column(db.String(120),nullable=False)
+    canteensid = db.Column(db.Integer, db.ForeignKey(
+        'canteen.id'), nullable=False)
+    image = db.Column(db.String(120), nullable=False)
+
 
 class cartitem(db.Model):
     idcart = db.Column(db.Integer, primary_key=True)
@@ -30,12 +34,16 @@ class cartitem(db.Model):
     netcost = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
 
+
 class cart(db.Model):
     product_id = db.Column(db.String(3), primary_key=True)
     product_name = db.Column(db.String(80), unique=True, nullable=False)
     product_cost = db.Column(db.Integer, nullable=False)
     product_quantity = db.Column(db.Integer, nullable=False)
-    status_id = db.Column(db.Integer, db.ForeignKey('status.order_id'), nullable=False)
+    status_id = db.Column(db.Integer, db.ForeignKey(
+        'status.order_id'), nullable=False)
+
+
 class status(db.Model):
     order_id = db.Column(db.Integer, primary_key=True)
     order_status = db.Column(db.String(45), unique=True, nullable=False)

@@ -1,176 +1,186 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Sign up / Login</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Jost', sans-serif;
-            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-        }
-        
-        .main {
-            width: 400px;
-            height: 600px;
-            background: whitesmoke;
-            border-radius: 10px;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 5px 20px 50px #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .form-container {
-            width: 80%;
-        }
-        
-        .form-container label {
-            color: #573b8a;
-            font-weight: bold;
-        }
-        
-        .form-container input[type="text"],
-        .form-container input[type="email"],
-        .form-container input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #573b8a;
-            border-radius: 5px;
-        }
-        
-        .form-container button:disabled {
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Jost", sans-serif;
+        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+      }
+
+      .main {
+        width: 400px;
+        height: 600px;
+        background: whitesmoke;
+        border-radius: 10px;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 5px 20px 50px #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .form-container {
+        width: 80%;
+      }
+
+      .form-container label {
+        color: #573b8a;
+        font-weight: bold;
+      }
+
+      .form-container input[type="text"],
+      .form-container input[type="email"],
+      .form-container input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #573b8a;
+        border-radius: 5px;
+      }
+
+      .form-container button:disabled {
         opacity: 0.5; /* Opacity for disabled button */
         cursor: not-allowed;
-        }
-        .form-container button:not(:disabled) {
+      }
+      .form-container button:not(:disabled) {
         opacity: 1; /* Opacity for enabled button */
         cursor: pointer;
-        }
-        .form-container button {
-            width: 100%;
-            padding: 10px;
-            background: #573b8a;
-            opacity: 0.5;
-            color: white;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .form-container button:hover {
-            background: #6d44b8;
-        }
-        
-        .form-container .stay-signed-in {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .form-container .stay-signed-in label {
-            color: #573b8a;
-            margin-left: 10px;
-        }
-        .main.move-up .form-container {
-            transform: translateY(-100%);
-            transition: transform 0.5s ease-in-out;
-        }
+      }
+      .form-container button {
+        width: 100%;
+        padding: 10px;
+        background: #573b8a;
+        opacity: 0.5;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
+      .form-container button:hover {
+        background: #6d44b8;
+      }
+
+      .form-container .stay-signed-in {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .form-container .stay-signed-in label {
+        color: #573b8a;
+        margin-left: 10px;
+      }
+      .main.move-up .form-container {
+        transform: translateY(-100%);
+        transition: transform 0.5s ease-in-out;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main">
-        <h2>SIGN UP</h2>
-        <div class="form-container">
-            <form id="accountForm" method="POST">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" required>
-                
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                
-                <div class="stay-signed-in">
-                    <input type="checkbox" id="stayLoggedIn" name="stayLoggedIn">
-                    <label for="stayLoggedIn">Stay Logged In</label>
-                </div>
-                <button type="submit" id="createAccountBtn" disabled>SIGN UP</button>
-            </form>
-        </div>
+      <h2>SIGN UP</h2>
+      <div class="form-container">
+        <form id="accountForm" method="POST">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="text" id="phoneNumber" name="phoneNumber" required />
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+
+          <div class="stay-signed-in">
+            <input type="checkbox" id="stayLoggedIn" name="stayLoggedIn" />
+            <label for="stayLoggedIn">Stay Logged In</label>
+          </div>
+          <button type="submit" id="createAccountBtn" disabled>SIGN UP</button>
+        </form>
+      </div>
     </div>
     <script>
-    // function showOTPForm() {
-    //     document.getElementById("accountForm").style.display = "none";
-    //     var mainContainer = document.querySelector('.main');
-    //     var formContainer = document.querySelector('.form-container');
+      // function showOTPForm() {
+      //     document.getElementById("accountForm").style.display = "none";
+      //     var mainContainer = document.querySelector('.main');
+      //     var formContainer = document.querySelector('.form-container');
 
+      //     window.location.href = "vexx.html";
+      // }
 
-    //     window.location.href = "vexx.html"; 
-    // }
-
-    function isValidPhoneNumber(phoneNumber) {
+      function isValidPhoneNumber(phoneNumber) {
         // Regex pattern to validate phone number (10 digits)
         var pattern = /^\d{10}$/;
         return pattern.test(phoneNumber);
-    }
+      }
 
-    function isValidEmail(email) {
+      function isValidEmail(email) {
         // Regex pattern to validate email address
         var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return pattern.test(email);
-    }
+      }
 
-    function showPopup(message) {
+      function showPopup(message) {
         alert(message);
-    }
+      }
 
-    document.getElementById("accountForm").addEventListener("input", function() {
-        var username = document.getElementById("username").value.trim();
-        var email = document.getElementById("email").value.trim();
-        var phoneNumber = document.getElementById("phoneNumber").value.trim();
-        var password = document.getElementById("password").value.trim();
+      document
+        .getElementById("accountForm")
+        .addEventListener("input", function () {
+          var username = document.getElementById("username").value.trim();
+          var email = document.getElementById("email").value.trim();
+          var phoneNumber = document.getElementById("phoneNumber").value.trim();
+          var password = document.getElementById("password").value.trim();
 
-        var invalid = !username || !isValidEmail(email) || !isValidPhoneNumber(phoneNumber) || !password;
+          var invalid =
+            !username ||
+            !isValidEmail(email) ||
+            !isValidPhoneNumber(phoneNumber) ||
+            !password;
 
-        document.getElementById("createAccountBtn").disabled = invalid;
+          document.getElementById("createAccountBtn").disabled = invalid;
 
-        if (!invalid) {
-            document.getElementById("createAccountBtn").removeAttribute("disabled");
-        } else {
-            document.getElementById("createAccountBtn").setAttribute("disabled", "disabled");
-        }
-    });
+          if (!invalid) {
+            document
+              .getElementById("createAccountBtn")
+              .removeAttribute("disabled");
+          } else {
+            document
+              .getElementById("createAccountBtn")
+              .setAttribute("disabled", "disabled");
+          }
+        });
 
-        document.getElementById("createAccountBtn").addEventListener("submit", function(event) {
-            event.preventDefault();
-        var username = document.getElementById("username").value.trim();
-        var email = document.getElementById("email").value.trim();
-        var phoneNumber = document.getElementById("phoneNumber").value.trim();
-        var password = document.getElementById("password").value.trim();
+      document
+        .getElementById("createAccountBtn")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var username = document.getElementById("username").value.trim();
+          var email = document.getElementById("email").value.trim();
+          var phoneNumber = document.getElementById("phoneNumber").value.trim();
+          var password = document.getElementById("password").value.trim();
 
-        if (!username || !email || !phoneNumber || !password) {
+          if (!username || !email || !phoneNumber || !password) {
             showPopup("Please fill in all the required fields.");
             return;
-        }
+          }
 
-        checkExistingCredentials(email, phoneNumber);
-    });
-</script>
-    </body>
-    </html>
+          checkExistingCredentials(email, phoneNumber);
+        });
+    </script>
+  </body>
+</html>

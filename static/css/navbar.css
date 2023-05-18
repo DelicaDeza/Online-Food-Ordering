@@ -1,47 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
 nav {
-    font-family: 'Poppins', sans-serif;
-    border-radius: 50px !important;
-    padding: 0 50px !important;
-    /* box shadow on the bottom */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    width: 100%;
-  }
-  
-  a.nav-link {
-    margin: 10px;
-    padding: 10px 20px !important;
-    color: #9f9f9f;
-    border-radius: 50px;
-  }
-  
-  a.nav-link:hover {
-    color: #888888;
-    background: #e7e7e7;
-  }
-  
-  .navbar-toggler {
-    outline: none;
-    border: none;
-    box-shadow: none;
-  }
-  
-  .navbar-toggler:active {
-    outline: none;
-    border: none;
-  }
-  
-  .navbar-toggler:focus {
-    outline: none;
-    border: none;
-    box-shadow: none;
-  }
-  
-  .navbar-toggler img {
-    transition: width 0.15s ease-in-out;
-  }
-  
-  .navbar-toggler.clicked img {
-    width: 75px;
-  }
-  
+  font-family: "Poppins", sans-serif;
+  border-radius: 50px !important;
+  padding: 0 50px !important;
+  /* box shadow on the bottom */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+a.nav-link {
+  margin: 10px;
+  padding: 10px 20px !important;
+  color: #9f9f9f;
+  border-radius: 50px;
+}
+
+a.nav-link:hover {
+  color: #888888;
+  background: #e7e7e7;
+}
+
+.navbar-toggler {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.navbar-toggler:active {
+  outline: none;
+  border: none;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.navbar-toggler img {
+  transition: width 0.15s ease-in-out;
+}
+
+.navbar-toggler.clicked img {
+  width: 75px;
+}
