@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Forgot Password</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
       body {
         margin: 0;
@@ -59,15 +60,87 @@
       .forgot-form button:hover {
         background: #6d44b8;
       }
+      .popup-message {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background-color: #ffffff;
+        color: #000000;
+        text-align: center;
+        line-height: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        display: none;
+        transition: top 0.3s ease-in-out;
+      }
+
+      .popup-message.show {
+        top: 0;
+      }
     </style>
   </head>
   <body>
     <div class="main">
-      <form class="forgot-form" method="post">
+      <form class="forgot-form" method="post" id="forgot-form">
         <label>Forgot Password</label>
         <input type="email" name="email" placeholder="Email" required="" />
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
+    <script>
+      function showPopupMessage(message) {
+  var popupMessage = $('#popup-message');
+  var popupMessageText = $('#popup-message-text');
+
+  // Set the message text
+  popupMessageText.text(message);
+
+  // Show the popup message
+  popupMessage.addClass('show');
+
+  // Hide the popup message after 3 seconds
+  setTimeout(function() {
+    popupMessage.removeClass('show');
+  }, 3000);
+}
+//   function showPopupMessage(message) {
+//     var popup = document.getElementById('popup-message');
+//     popup.innerText = message;
+//     popup.style.display = 'block';
+//   }
+
+//   document.getElementById('forgot-password-form').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent the form from submitting normally
+
+//     var form = event.target;
+//     var formData = new FormData(form);
+
+//     fetch('/forgot_password', {
+//       method: 'POST',
+//       body: formData
+//     })
+//     .then(function(response) {
+//       return response.json();
+//     })
+//     .then(function(data) {
+//       showPopupMessage(data.message);
+//     })
+//     .catch(function(error) {
+//       console.log('Error:', error);
+//     });
+//   });
+
+
+// <div id="popup-message" style="display: none;"></div>
+
+    </script>
+
+    <div id="popup-message" class="popup-message">
+      <span id="popup-message-text"></span>
+    </div>
+
+    <!-- Rest of your HTML code -->
   </body>
 </html>

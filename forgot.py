@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,jsonify
 from flask_mail import Mail, Message
 import random
 import string
@@ -31,7 +31,7 @@ def forgot_password(app, db):
                           sender='your-email-address-here', recipients=[email])
             msg.body = f'Your new password is: {new_password}'
             mail.send(msg)
-            return 'An email with your new password has been sent.'
+            return render_template('forgot.html', message='An email with your new password has been sent.')
         else:
-            return 'Email not found.'
+            return render_template('forgot.html', message='Email not found.')
     return render_template('forgot.html')
