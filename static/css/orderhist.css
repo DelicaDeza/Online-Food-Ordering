@@ -1,0 +1,18 @@
+.box1{
+    display:inline-block;
+    background-color: white;
+    color: black;
+    padding: 20px;
+  }
+
+  .item-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .item-details {
+    margin-left: 20px;
+  }

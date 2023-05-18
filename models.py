@@ -47,3 +47,13 @@ class cart(db.Model):
 class status(db.Model):
     order_id = db.Column(db.Integer, primary_key=True)
     order_status = db.Column(db.String(45), unique=True, nullable=False)
+
+
+class order_history(db.Model):
+    transactionid = db.Column(db.Integer, primary_key = True)
+    username=db.Column(db.String(100))
+    foodid=db.Column(db.Integer, db.ForeignKey(
+        'food.idfooditems'), nullable=False)
+    foodname=db.Column(db.String(100))
+    qty=db.Column(db.Integer)
+    date=db.Column(db.Date)

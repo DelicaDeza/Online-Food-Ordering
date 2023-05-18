@@ -7,7 +7,7 @@ from signup import create_account
 from datetime import timedelta
 from functools import wraps
 from cartstatus import statusmenu, cartmenu
-
+from cartpage import view_order_history
 
 def create_app():
     app = Flask(__name__)
@@ -69,6 +69,7 @@ def forgot():
 def logout():
     # Clear the email from the session
     session.pop('email', None)
+    return redirect('login.html')
 
 
 @app.route('/status.html')
@@ -98,6 +99,10 @@ def delete_item(product_id):
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)})
 
+
+@app.route("/orderHistory")   
+def order():
+    return view_order_history()
 
 if __name__ == '__main__':
     app.run(debug=True)
