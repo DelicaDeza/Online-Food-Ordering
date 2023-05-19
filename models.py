@@ -28,7 +28,7 @@ class fooditems(db.Model):
     image = db.Column(db.String(120), nullable=False)
 
 
-class cartitem(db.Model):
+class cartitems(db.Model):
     idcart = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     netcost = db.Column(db.Float, nullable=False)
@@ -50,10 +50,10 @@ class status(db.Model):
 
 
 class order_history(db.Model):
-    transactionid = db.Column(db.Integer, primary_key = True)
-    username=db.Column(db.String(100))
-    foodid=db.Column(db.Integer, db.ForeignKey(
+    transactionid = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100))
+    foodid = db.Column(db.Integer, db.ForeignKey(
         'food.idfooditems'), nullable=False)
-    foodname=db.Column(db.String(100))
-    qty=db.Column(db.Integer)
-    date=db.Column(db.Date)
+    foodname = db.Column(db.String(100))
+    qty = db.Column(db.Integer)
+    date = db.Column(db.Date)

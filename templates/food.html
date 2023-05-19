@@ -24,6 +24,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     {% include 'navbar.html' %}
@@ -89,7 +90,7 @@
             <button
               class="btn btn-outline-primary btn-add"
               data-max="{{ food.quantity }}"
-              onclick="addToCart('{{ food.name }}', '{{ food.netcost }}', $('#quantity-input').val())"
+              onclick="addToCart('{{ food.name }}', '{{ food.price }}')"
             >
               Add
             </button>
@@ -208,7 +209,7 @@
           }
         });
       });
-      function addToCart(name, netcost, quantity) {
+      function addToCart(name, netcost) {
         $.ajax({
           url: "/api/cart",
           method: "POST",
@@ -216,7 +217,7 @@
           data: JSON.stringify({
             name: name,
             netcost: netcost,
-            quantity: quantity,
+            // quantity: quantity,
           }),
           success: function (response) {
             alert("Item added to cart!");

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, session, redirect, url_for
-from models import db, cartitem, cart
+from models import db, cartitems, cart
 from food_menu import foodmenu
 from login import index
 from forgot import forgot_password
@@ -8,6 +8,7 @@ from datetime import timedelta
 from functools import wraps
 from cartstatus import statusmenu, cartmenu
 from cartpage import view_order_history
+
 
 def create_app():
     app = Flask(__name__)
@@ -38,13 +39,12 @@ def food():
 
 
 @app.route("/api/cart", methods=["POST"])
-@login_required
 def add_to_cart():
     data = request.get_json()
     name = data["name"]
     netcost = data["netcost"]
-    quantity = data["quantity"]
-    item = cartitem(name=name, netcost=netcost, quantity=quantity)
+    # quantity = data["quantity"]
+    item = cartitems(name=name, netcost=netcost)
     db.session.add(item)
     db.session.commit()
     return jsonify({"success": True})
@@ -100,9 +100,10 @@ def delete_item(product_id):
         return jsonify({'success': False, 'message': str(e)})
 
 
-@app.route("/orderHistory")   
+@app.route("/orderHistory")
 def order():
     return view_order_history()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
