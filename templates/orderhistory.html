@@ -32,24 +32,15 @@
   <body>
     {% include 'navbar.html' %}
       
-
-      <!-- {% set prevTransactionId = None %} -->
-
       <div class="item-container" style="margin:2%; display:block;">
         {% for item in hist %}
-      
-          <!-- {% if item.transactionid != prevTransactionId %}
-            {% if prevTransactionId is not none %} -->
             <div class="item-separator" style="height: 10px"></div>
-            <!-- {% endif %} -->
             <div class="item-box" style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-bottom: 20px;" onmouseover="this.style.boxShadow='0 0 10px lightblue'" onmouseout="this.style.boxShadow='none'">
               <h4>{{ item.transactionid }}  |  {{ item.canteenname }}</h4>
-          <!-- {% endif %} -->
               <div class="item-details" style="margin-top: 10px;">
                 <p style="margin: 5px 0;">{{ item.foodname }} | {{ item.qty }} | {{ item.date }}</p>
               </div>
               {{ item.sumtotal }}
-          <!-- {% set prevTransactionId = item.transactionid %} -->
       
         </div>
         {% endfor %}

@@ -73,11 +73,13 @@ def logout():
 
 
 @app.route('/status.html')
+@login_required
 def status():
     return statusmenu()
 
 
 @app.route('/cart.html')
+@login_required
 def cart1():
     return cartmenu()
 
@@ -101,6 +103,7 @@ def delete_item(product_id):
 
 
 @app.route("/orderHistory")
+@login_required
 def order():
     return view_order_history()
 
