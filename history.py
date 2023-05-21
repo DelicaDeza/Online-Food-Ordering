@@ -1,5 +1,5 @@
-from flask import render_template, request
-from models import fooditems, cart, users
+from flask import render_template
+from models import users
 from flask import session
 
 

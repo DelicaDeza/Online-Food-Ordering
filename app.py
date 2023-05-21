@@ -7,7 +7,7 @@ from signup import create_account
 from datetime import timedelta
 from functools import wraps
 from cartstatus import statusmenu, cartmenu
-from cartpage import view_order_history
+from history import view_order_history
 
 
 def create_app():

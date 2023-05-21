@@ -41,6 +41,7 @@ class cart(db.Model):
         'status.order_id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.idusers'), nullable=False)
+    user_cart = db.relationship('users', backref=db.backref('cart', lazy=True))
 
 
 class status(db.Model):
