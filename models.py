@@ -11,9 +11,9 @@ class users(db.Model):
     password = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(100), unique=True, nullable=False)
     phone_number = db.Column(db.String(100), unique=True, nullable=False)
-    carts = db.relationship('cart', backref='user', lazy=True)
+    carts = db.relationship('cart', back_populates='user', lazy=True)
     order_histories = db.relationship(
-        'order_history', backref='user', lazy=True)
+        'order_history', back_populates='user', lazy=True)
 
 
 class canteens(db.Model):
@@ -41,13 +41,14 @@ class cart(db.Model):
         'status.order_id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.idusers'), nullable=False)
-    user_cart = db.relationship('users', backref=db.backref('cart', lazy=True))
+    statusses = db.relationship('status', back_populates='cartss', lazy=True)
+    user = db.relationship('users', back_populates="carts", lazy=True)
 
 
 class status(db.Model):
     order_id = db.Column(db.Integer, primary_key=True)
     order_status = db.Column(db.String(45), unique=True, nullable=False)
-    carts = db.relationship('cart', backref='status', lazy=True)
+    cartss = db.relationship('cart', back_populates='statusses', lazy=True)
 
 
 class order_history(db.Model):
@@ -60,7 +61,8 @@ class order_history(db.Model):
     date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.idusers'), nullable=False)
-    user_history = db.relationship('users', backref=db.backref('order_history', lazy=True))
+    user = db.relationship(
+        'users', back_populates='order_histories', lazy=True)
 
 
 class cartitems(db.Model):

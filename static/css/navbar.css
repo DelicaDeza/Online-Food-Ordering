@@ -44,3 +44,30 @@ a.nav-link:hover {
 .navbar-toggler.clicked img {
   width: 75px;
 }
+
+@media only screen and (max-width: 600px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-nav li {
+    margin-bottom: 10px;
+  }
+
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-collapse {
+    display: none;
+  }
+
+  .navbar-collapse.show {
+    display: block;
+  }
+
+  .navbar-nav.ml-auto {
+    margin-top: 10px;
+  }
+}

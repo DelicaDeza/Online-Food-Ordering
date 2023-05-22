@@ -239,14 +239,54 @@ p {
   color: white;
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
+@media only screen and (max-width: 600px) {
+  .dropdown-menu {
+    position: relative;
+  }
+
+  .search-container {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .food-list {
+    display: block;
   }
 
   .food-item {
-    margin: 10px 0;
     width: 100%;
+  }
+
+  .food-image-overlay {
+    height: auto;
+  }
+
+  .food-name {
+    font-size: 16px;
+  }
+
+  .food-price {
+    font-size: 14px;
+  }
+
+  .food-quantity {
+    justify-content: center;
+  }
+
+  .input-quantity {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+  }
+
+  .input-quantity-value {
+    width: 30%;
   }
 }
