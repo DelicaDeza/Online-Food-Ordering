@@ -43,11 +43,30 @@ def add_to_cart():
     data = request.get_json()
     name = data["name"]
     netcost = data["netcost"]
-    # quantity = data["quantity"]
-    item = cartitems(name=name, netcost=netcost)
-    db.session.add(item)
+    quantity = data["quantity"]  # Retrieve the quantity from the request data
+
+    if quantity and quantity > 0:  # Check if quantity is not None and greater than 0
+        item = cartitems(name=name, netcost=netcost, quantity=quantity)
+        db.session.add(item)
+        db.session.commit()
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False, "error": "Invalid quantity"})
+
+@app.route("/api/cart/update_quantity", methods=["POST"])
+def update_cart_item_quantity():
+  data = request.get_json()
+  productName = data["productName"]
+  quantity = data["quantity"]
+
+  # Find the cart item in the database by product name and update its quantity
+  cart_item = cart.query.filter_by(product_name=productName).first()
+  if cart_item:
+    cart_item.product_quantity = quantity
     db.session.commit()
-    return jsonify({"success": True})
+
+  return jsonify({"success": True})
+
 
 
 @app.route('/create.html', methods=['GET', 'POST'])
