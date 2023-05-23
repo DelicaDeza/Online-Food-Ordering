@@ -3,6 +3,7 @@ import mysql.connector
 from models import users
 from food_menu import foodmenu
 from datetime import timedelta
+import bcrypt
 
 
 def index(app):
@@ -11,10 +12,10 @@ def index(app):
         password = request.form.get('pswd')
         stay_logged_in = request.form.get('stay_logged_in') == 'true'
 
-        # Check if the email and password match a user in the database
-        user = users.query.filter_by(email=email, password=password).first()
+        # Retrieve the user from the database based on the email
+        user = users.query.filter_by(email=email).first()
 
-        if user:
+        if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
             # Store the user's email in the session for authentication
             session['email'] = user.email
             if stay_logged_in:

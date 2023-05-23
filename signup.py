@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect
 from models import users
 from sqlalchemy import or_
-
+import bcrypt
 
 def create_account(db):
     # Retrieve the create.html form data
@@ -22,9 +22,12 @@ def create_account(db):
             'message': 'Email, phone number, or username already exists. Please enter different credentials.'
         }
     else:
+        # Hash the password
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
         # Insert the new account into the database
         new_user = users(username=username, email=email,
-                         phone_number=phone_number, password=password)
+                         phone_number=phone_number, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
@@ -34,7 +37,6 @@ def create_account(db):
             'email': email,
             'phone_number': phone_number
         }
-        # print response
 
     return jsonify(response)
     return render_template('create.html')
