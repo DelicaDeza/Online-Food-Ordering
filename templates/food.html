@@ -102,7 +102,6 @@
                 <button
                   class="btn btn-outline-danger btn-minus"
                   type="button"
-                  onclick="decrementQuantity(this)"
                 >
                   -
                 </button>
@@ -122,7 +121,6 @@
                 <button
                   class="btn btn-outline-success btn-plus"
                   type="button"
-                  onclick="incrementQuantity(this)"
                 >
                   +
                 </button>
@@ -209,24 +207,13 @@
   });
 }
 
-function incrementQuantity(button) {
-  var quantityInput = $(button).closest('.input-quantity').find('.input-quantity-value');
-  var quantity = parseInt(quantityInput.val()) + 1;
-  quantityInput.val(quantity);
-  updateCartItemQuantity(quantityInput);
-}
-
-function decrementQuantity(button) {
-  var quantityInput = $(button).closest('.input-quantity').find('.input-quantity-value');
-  var quantity = parseInt(quantityInput.val()) - 1;
-  quantityInput.val(quantity);
-  updateCartItemQuantity(quantityInput);
-}
 
 function updateCartItemQuantity(quantityInput) {
-  var quantity = parseInt(quantityInput.val());
+  var quantityValue = quantityInput.find(".input-quantity-value");
+  var quantity = parseInt(quantityValue.attr("value"));
   var productName = quantityInput.closest('.food-item').find('.food-name').text();
-
+  console.log(quantityInput.val());
+  console.log(productName, quantity);
   $.ajax({
     url: "/api/cart/update_quantity",
     method: "POST",
@@ -237,6 +224,7 @@ function updateCartItemQuantity(quantityInput) {
     }),
     success: function (response) {
       // Handle success response
+      alert("Item quantity updated!");
     },
     error: function (xhr, status, error) {
       alert("Error updating cart item quantity: " + error);
@@ -244,38 +232,42 @@ function updateCartItemQuantity(quantityInput) {
   });
 }
 
+
 $(document).ready(function() {
   $(".btn-minus").on("click", function () {
-    var quantityInput = $(this).closest(".input-quantity");
-    var quantityValue = quantityInput.find(".input-quantity-value");
-    var minusButton = quantityInput.find(".btn-minus");
-    var plusButton = quantityInput.find(".btn-plus");
-    var quantity = parseInt(quantityValue.val());
-    quantity--;
-    quantityInput.val(quantity);
-    minusButton.prop("disabled", quantity <= 0);
-    plusButton.prop(
-      "disabled",
-      quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
-    );
-    updateCartItemQuantity(quantityInput);
-  });
+  var quantityInput = $(this).closest(".input-quantity");
+  var quantityValue = quantityInput.find(".input-quantity-value");
+  var minusButton = quantityInput.find(".btn-minus");
+  var plusButton = quantityInput.find(".btn-plus");
+  var quantity = parseInt(quantityValue.attr("value")); // Retrieve the value from the attribute
+  quantity--;
+  quantityValue.attr("value", quantity); // Update the value attribute of the input field
+  minusButton.prop("disabled", quantity <= 0);
+  plusButton.prop(
+    "disabled",
+    quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
+  );
+  updateCartItemQuantity(quantityInput);
+});
 
-  $(".btn-plus").on("click", function () {
-    var quantityInput = $(this).closest(".input-quantity");
-    var quantityValue = quantityInput.find(".input-quantity-value");
-    var minusButton = quantityInput.find(".btn-minus");
-    var plusButton = quantityInput.find(".btn-plus");
-    var quantity = parseInt(quantityValue.val());
-    quantity++;
-    quantityInput.val(quantity);
-    minusButton.prop("disabled", quantity <= 1);
-    plusButton.prop(
-      "disabled",
-      quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
-    );
-    updateCartItemQuantity(quantityInput);
-  });
+$(".btn-plus").on("click", function () {
+  var quantityInput = $(this).closest(".input-quantity");
+  var quantityValue = quantityInput.find(".input-quantity-value");
+  var minusButton = quantityInput.find(".btn-minus");
+  var plusButton = quantityInput.find(".btn-plus");
+  var quantity = parseInt(quantityValue.attr("value")); // Retrieve the value from the attribute
+  quantity++;
+  quantityValue.attr("value", quantity); // Update the value attribute of the input field
+  minusButton.prop("disabled", quantity <= 1);
+  plusButton.prop(
+    "disabled",
+    quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
+  );
+  updateCartItemQuantity(quantityInput);
+});
+
+
+
   
 });
 

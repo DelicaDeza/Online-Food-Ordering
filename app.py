@@ -59,9 +59,9 @@ def update_cart_item_quantity():
   quantity = data["quantity"]
 
   # Find the cart item in the database by product name and update its quantity
-  cart_item = cart.query.filter_by(product_name=productName).first()
+  cart_item = cartitems.query.filter_by(name=productName).first()
   if cart_item:
-    cart_item.product_quantity = quantity
+    cart_item.quantity = quantity
     db.session.commit()
 
   return jsonify({"success": True})

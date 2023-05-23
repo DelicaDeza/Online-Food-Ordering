@@ -18,6 +18,9 @@ a.nav-link {
   color: #000000;
   border-radius: 50px;
 }
+a.nav-link .cart-icon{
+  color: #000000;
+}
 
 a.nav-link:hover{
   color: #ff7700;
