@@ -14,19 +14,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
               <li class="nav-item">
-                <a class="nav-link">DelicaDeza</a>
+                <a class="nav-link" id="brand-link">DelicaDeza</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">home</a>
+                <a class="nav-link">
+                  <span class="welcome-text">Welcome! {{ session.get('username') }}</span>
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">about</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">portfolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">contact</a>
+                <a class="nav-link" href="/food_menu">home</a>
               </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -46,3 +42,5 @@
     </div>
   </div>
 </body>
+
+

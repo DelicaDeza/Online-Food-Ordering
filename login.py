@@ -5,7 +5,6 @@ from food_menu import foodmenu
 from datetime import timedelta
 import bcrypt
 
-
 def index(app):
     if request.method == 'POST':
         email = request.form.get('email')
@@ -18,6 +17,11 @@ def index(app):
         if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
             # Store the user's email in the session for authentication
             session['email'] = user.email
+            user = users.query.filter_by(email=email).first()
+    
+            if user:
+                # Retrieve the username from the user object
+                session['username'] = user.username
             if stay_logged_in:
                 session.permanent = True
                 app.permanent_session_lifetime = timedelta(days=30)

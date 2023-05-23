@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, session, redirect, url_for
-from models import db, cartitems, cart
+from models import db, cartitems, cart,users
 from food_menu import foodmenu
 from login import index
 from forgot import forgot_password
@@ -36,7 +36,6 @@ app = create_app()
 @login_required
 def food():
     return foodmenu()
-
 
 @app.route("/api/cart", methods=["POST"])
 def add_to_cart():

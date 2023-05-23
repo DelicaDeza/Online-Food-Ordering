@@ -7,16 +7,25 @@ nav {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
 }
+#brand-link:hover {
+  color: inherit;
+  background: inherit;
+}
 
 a.nav-link {
   margin: 10px;
   padding: 10px 20px !important;
-  color: #9f9f9f;
+  color: #000000;
   border-radius: 50px;
 }
 
-a.nav-link:hover {
-  color: #888888;
+a.nav-link:hover{
+  color: #ff7700;
+  background: #e7e7e7;
+}
+.nav-link:hover,
+.nav-link:hover .cart-icon {
+  color: #ff7700;
   background: #e7e7e7;
 }
 
@@ -43,6 +52,11 @@ a.nav-link:hover {
 
 .navbar-toggler.clicked img {
   width: 75px;
+}
+.welcome-text {
+  font-size: 14px;
+  /* font-family: "Arial", sans-serif; */
+  color: #888888;
 }
 
 @media only screen and (max-width: 600px) {
