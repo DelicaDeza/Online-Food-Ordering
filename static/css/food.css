@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
 body {
-  background-image: url("https://e0.pxfuel.com/wallpapers/421/825/desktop-wallpaper-mexican-food-background-seamless-food-delivery-stepone-for-your-mobile-tablet-explore-mexican-food-mexican-for-walls-mexican-style-mexicans-with-attitude.jpg");
-  
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url("https://e0.pxfuel.com/wallpapers/421/825/desktop-wallpaper-mexican-food-background-seamless-food-delivery-stepone-for-your-mobile-tablet-explore-mexican-food-mexican-for-walls-mexican-style-mexicans-with-attitude.jpg");
+  /* background-image: url("https://img.freepik.com/premium-photo/set-cheeses-suluguni-blue-cheese-mozzarella-maasdam-brie-cheese-top-view-black-wooden-background-free-copy-space_187166-24615.jpg?size=626&ext=jpg&ga=GA1.1.196243977.1684836876&semt=ais"); */
   /* background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url("https://t3.ftcdn.net/jpg/02/86/82/40/360_F_286824061_xx36YF5NEIrUnvHMrQaiRgVzwfDhRphF.jpg"); */
   overflow-x: hidden;
   background-size: cover;
@@ -173,6 +173,11 @@ p {
 
 .dropdown button:hover + .dropdown-menu {
   display: block;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #ff7700;
+  color: white
 }
 
 .btn.dropdown-toggle {
