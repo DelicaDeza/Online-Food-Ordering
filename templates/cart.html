@@ -55,14 +55,15 @@
               <th>Edit <span class="icon-arrow">&UpArrow;</span></th>
             </tr>
           </thead>
+
           <tbody>
-            {% for displaycart in displaycart %}
+            {% set totalCost = namespace(value=0) %} {% for displaycart in
+            displaycart %}
             <tr>
               <td>{{ loop.index }}</td>
-              <!-- <td>{{ displaycart.product_id }}</td> -->
               <td>{{ displaycart.product_name }}</td>
               <td>{{ displaycart.product_quantity }}</td>
-              <td>{{ displaycart.product_cost}}</td>
+              <td>{{ displaycart.product_cost }}</td>
               <td>
                 {{ displaycart.product_cost * displaycart.product_quantity }}
               </td>
@@ -74,13 +75,13 @@
                 >
               </td>
             </tr>
-            {% endfor %}
+            {% set itemCost = displaycart.product_cost *
+            displaycart.product_quantity %} {% set totalCost.value =
+            totalCost.value + itemCost %} {% endfor %}
             <tr>
+              <td colspan="4" align="right"><b>Total Cost:</b></td>
+              <td>{{ totalCost.value }}</td>
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>{{total_price}}</td>
             </tr>
             <tr>
               <td></td>

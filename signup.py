@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify,redirect,url_for
+from flask import render_template, request, jsonify, redirect, url_for
 from models import users
 from sqlalchemy import or_
 import bcrypt
@@ -21,7 +21,7 @@ def create_account(db):
         # Existing credentials found
         response = "Username,email or phone number already exists!"
         return render_template('create.html', errormessage=response)
-        
+
     else:
         # Hash the password
         hashed_password = bcrypt.hashpw(

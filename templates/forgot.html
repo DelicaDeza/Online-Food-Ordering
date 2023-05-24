@@ -92,50 +92,48 @@
     </div>
     <script>
       function showPopupMessage(message) {
-  var popupMessage = $('#popup-message');
-  var popupMessageText = $('#popup-message-text');
+        var popupMessage = $("#popup-message");
+        var popupMessageText = $("#popup-message-text");
 
-  // Set the message text
-  popupMessageText.text(message);
+        // Set the message text
+        popupMessageText.text(message);
 
-  // Show the popup message
-  popupMessage.addClass('show');
+        // Show the popup message
+        popupMessage.addClass("show");
 
-  // Hide the popup message after 3 seconds
-  setTimeout(function() {
-    popupMessage.removeClass('show');
-  }, 3000);
-}
-//   function showPopupMessage(message) {
-//     var popup = document.getElementById('popup-message');
-//     popup.innerText = message;
-//     popup.style.display = 'block';
-//   }
+        // Hide the popup message after 3 seconds
+        setTimeout(function () {
+          popupMessage.removeClass("show");
+        }, 3000);
+      }
+      //   function showPopupMessage(message) {
+      //     var popup = document.getElementById('popup-message');
+      //     popup.innerText = message;
+      //     popup.style.display = 'block';
+      //   }
 
-//   document.getElementById('forgot-password-form').addEventListener('submit', function(event) {
-//     event.preventDefault(); // Prevent the form from submitting normally
+      //   document.getElementById('forgot-password-form').addEventListener('submit', function(event) {
+      //     event.preventDefault(); // Prevent the form from submitting normally
 
-//     var form = event.target;
-//     var formData = new FormData(form);
+      //     var form = event.target;
+      //     var formData = new FormData(form);
 
-//     fetch('/forgot_password', {
-//       method: 'POST',
-//       body: formData
-//     })
-//     .then(function(response) {
-//       return response.json();
-//     })
-//     .then(function(data) {
-//       showPopupMessage(data.message);
-//     })
-//     .catch(function(error) {
-//       console.log('Error:', error);
-//     });
-//   });
+      //     fetch('/forgot_password', {
+      //       method: 'POST',
+      //       body: formData
+      //     })
+      //     .then(function(response) {
+      //       return response.json();
+      //     })
+      //     .then(function(data) {
+      //       showPopupMessage(data.message);
+      //     })
+      //     .catch(function(error) {
+      //       console.log('Error:', error);
+      //     });
+      //   });
 
-
-// <div id="popup-message" style="display: none;"></div>
-
+      // <div id="popup-message" style="display: none;"></div>
     </script>
 
     <div id="popup-message" class="popup-message">

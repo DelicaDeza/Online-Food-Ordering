@@ -57,6 +57,7 @@ class order_history(db.Model):
     foodname = db.Column(db.String(100))
     qty = db.Column(db.Integer)
     date = db.Column(db.Date)
+    canteen_name = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey(
         'users.idusers'), nullable=False)
     user = db.relationship(

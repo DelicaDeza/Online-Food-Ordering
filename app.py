@@ -16,13 +16,18 @@ def create_app():
     app.config['SESSION_TYPE'] = 'filesystem'
     # Set the session configuration
     app.config['SECRET_KEY'] = 'your_secret_key_here'
-    app.config['SESSION_COOKIE_SECURE'] = True  # Ensure secure session cookie (requires HTTPS)
-    app.config['SESSION_COOKIE_HTTPONLY'] = True  # Prevent client-side access to the session cookie
-    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'  # Limit cross-site cookie usage
+    # Ensure secure session cookie (requires HTTPS)
+    app.config['SESSION_COOKIE_SECURE'] = True
+    # Prevent client-side access to the session cookie
+    app.config['SESSION_COOKIE_HTTPONLY'] = True
+    # Limit cross-site cookie usage
+    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
     # Set the session timeout to None
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)  # Set a longer timeout (e.g., 30 days)
-    app.config['SESSION_COOKIE_MAXAGE'] = None  # Session cookie expires when browser is closed
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(
+        days=30)  # Set a longer timeout (e.g., 30 days)
+    # Session cookie expires when browser is closed
+    app.config['SESSION_COOKIE_MAXAGE'] = None
     db.init_app(app)
     return app
 

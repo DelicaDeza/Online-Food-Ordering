@@ -60,7 +60,9 @@
       />
       <a href="#" id="search-button"
         ><label for="search-input" id="search-button"
-          ><span class="material-icons" style="vertical-align: middle; color:#ff7700"
+          ><span
+            class="material-icons"
+            style="vertical-align: middle; color: #ff7700"
             >search</span
           ></label
         ></a
@@ -99,10 +101,7 @@
               style="display: none; width: 50%; margin: auto"
             >
               <div class="input-group-prepend">
-                <button
-                  class="btn btn-outline-danger btn-minus"
-                  type="button"
-                >
+                <button class="btn btn-outline-danger btn-minus" type="button">
                   -
                 </button>
               </div>
@@ -118,10 +117,7 @@
                 "
               />
               <div class="input-group-append">
-                <button
-                  class="btn btn-outline-success btn-plus"
-                  type="button"
-                >
+                <button class="btn btn-outline-success btn-plus" type="button">
                   +
                 </button>
               </div>
@@ -134,151 +130,148 @@
     </div>
 
     <script>
-      $(document).ready(function () {
-        $(".dropdown-item").on("click", function () {
-          var canteenName = $(this).text().replace(/\s+/g, "_");
-          $(".dropdown-toggle").text($(this).text());
-          $(".food-list").hide();
-          $("#" + canteenName).show();
+            $(document).ready(function () {
+              $(".dropdown-item").on("click", function () {
+                var canteenName = $(this).text().replace(/\s+/g, "_");
+                $(".dropdown-toggle").text($(this).text());
+                $(".food-list").hide();
+                $("#" + canteenName).show();
+              });
+            });
+            $(document).ready(function () {
+              $(".btn-add").on("click", function () {
+                var maxQuantity = parseInt($(this).data("max"));
+                $(this).hide();
+                var quantityInput = $(this).siblings(".input-quantity");
+                quantityInput.show();
+                var quantityValue = quantityInput.find(".input-quantity-value");
+                var minusButton = quantityInput.find(".btn-minus");
+                var plusButton = quantityInput.find(".btn-plus");
+                var quantity = parseInt(quantityValue.val());
+                minusButton.prop("disabled", quantity <= 0);
+                plusButton.prop("disabled", quantity >= maxQuantity);
+              });
+
+
+            });
+
+            $(document).ready(function () {
+              // Search when button is clicked
+              $("#search-button").on("click", function () {
+                var searchValue = $("#search-input")
+                  .val()
+                  .toLowerCase()
+                  .replace(/\s+/g, "");
+                $(".food-item").each(function () {
+                  var itemID = $(this).attr("id");
+                  var isMatched = itemID.includes(searchValue);
+                  console.log(
+                    itemID + " includes " + searchValue + " : " + isMatched
+                  );
+                  if (isMatched) {
+                    $(this).show();
+                  } else {
+                    $(this).hide();
+                  }
+                });
+              });
+
+              // Search when enter key is pressed
+              $("#search-input").on("keypress", function (e) {
+                if (e.keyCode == 13) {
+                  $("#search-button").click();
+                }
+              });
+            });
+            function addToCart(name, netcost) {
+        var quantity = parseInt($(".input-quantity-value").val());
+        $.ajax({
+          url: "/api/cart",
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({
+            name: name,
+            netcost: netcost,
+            quantity: quantity,
+            user_id: {{ session['id'] }}
+          }),
+          // success: function (response) {
+          //   alert("Item added to cart!");
+          // },
+          // error: function (xhr, status, error) {
+          //   alert("Error adding item to cart: " + error);
+          // },
         });
+      }
+
+
+      function updateCartItemQuantity(quantityInput) {
+        var quantityValue = quantityInput.find(".input-quantity-value");
+        var quantity = parseInt(quantityValue.attr("value"));
+        var productName = quantityInput.closest('.food-item').find('.food-name').text();
+        console.log(quantityInput.val());
+        console.log(productName, quantity);
+        $.ajax({
+          url: "/api/cart/update_quantity",
+          method: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({
+            productName: productName,
+            quantity: quantity,
+          }),
+          // success: function (response) {
+          //   // Handle success response
+          //   alert("Item quantity updated!");
+          // },
+          // error: function (xhr, status, error) {
+          //   alert("Error updating cart item quantity: " + error);
+          // },
+        });
+      }
+
+
+      $(document).ready(function() {
+        $(document).on("click", ".btn-minus", function () {
+        var quantityInput = $(this).closest(".input-quantity");
+        var quantityValue = quantityInput.find(".input-quantity-value");
+        var minusButton = quantityInput.find(".btn-minus");
+        var plusButton = quantityInput.find(".btn-plus");
+        var quantity = parseInt(quantityValue.attr("value"));
+        quantity--;
+        quantityValue.attr("value", quantity);
+        minusButton.prop("disabled", quantity <= 0);
+        plusButton.prop(
+          "disabled",
+          quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
+        );
+        if (quantity < 1) {
+          quantityInput.hide();
+          quantityInput.siblings(".btn-add").show();
+        }
+        updateCartItemQuantity(quantityInput);
       });
-      $(document).ready(function () {
-        $(".btn-add").on("click", function () {
-          var maxQuantity = parseInt($(this).data("max"));
-          $(this).hide();
-          var quantityInput = $(this).siblings(".input-quantity");
-          quantityInput.show();
-          var quantityValue = quantityInput.find(".input-quantity-value");
-          var minusButton = quantityInput.find(".btn-minus");
-          var plusButton = quantityInput.find(".btn-plus");
-          var quantity = parseInt(quantityValue.val());
-          minusButton.prop("disabled", quantity <= 0);
-          plusButton.prop("disabled", quantity >= maxQuantity);
-        });
 
-        
+      $(document).on("click", ".btn-plus", function () {
+        var quantityInput = $(this).closest(".input-quantity");
+        var quantityValue = quantityInput.find(".input-quantity-value");
+        var minusButton = quantityInput.find(".btn-minus");
+        var plusButton = quantityInput.find(".btn-plus");
+        var quantity = parseInt(quantityValue.attr("value"));
+        quantity++;
+        quantityValue.attr("value", quantity);
+        minusButton.prop("disabled", quantity <= 0); // Updated condition
+        plusButton.prop(
+          "disabled",
+          quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
+        );
+        updateCartItemQuantity(quantityInput);
       });
 
-      $(document).ready(function () {
-        // Search when button is clicked
-        $("#search-button").on("click", function () {
-          var searchValue = $("#search-input")
-            .val()
-            .toLowerCase()
-            .replace(/\s+/g, "");
-          $(".food-item").each(function () {
-            var itemID = $(this).attr("id");
-            var isMatched = itemID.includes(searchValue);
-            console.log(
-              itemID + " includes " + searchValue + " : " + isMatched
-            );
-            if (isMatched) {
-              $(this).show();
-            } else {
-              $(this).hide();
-            }
-          });
-        });
 
-        // Search when enter key is pressed
-        $("#search-input").on("keypress", function (e) {
-          if (e.keyCode == 13) {
-            $("#search-button").click();
-          }
-        });
+
+
+
       });
-      function addToCart(name, netcost) {
-  var quantity = parseInt($(".input-quantity-value").val());
-  $.ajax({
-    url: "/api/cart",
-    method: "POST",
-    contentType: "application/json",
-    data: JSON.stringify({
-      name: name,
-      netcost: netcost,
-      quantity: quantity,
-      user_id: {{ session['id'] }}
-    }),
-    success: function (response) {
-      alert("Item added to cart!");
-    },
-    error: function (xhr, status, error) {
-      alert("Error adding item to cart: " + error);
-    },
-  });
-}
-
-
-function updateCartItemQuantity(quantityInput) {
-  var quantityValue = quantityInput.find(".input-quantity-value");
-  var quantity = parseInt(quantityValue.attr("value"));
-  var productName = quantityInput.closest('.food-item').find('.food-name').text();
-  console.log(quantityInput.val());
-  console.log(productName, quantity);
-  $.ajax({
-    url: "/api/cart/update_quantity",
-    method: "POST",
-    contentType: "application/json",
-    data: JSON.stringify({
-      productName: productName,
-      quantity: quantity,
-    }),
-    success: function (response) {
-      // Handle success response
-      alert("Item quantity updated!");
-    },
-    error: function (xhr, status, error) {
-      alert("Error updating cart item quantity: " + error);
-    },
-  });
-}
-
-
-$(document).ready(function() {
-  $(document).on("click", ".btn-minus", function () {
-  var quantityInput = $(this).closest(".input-quantity");
-  var quantityValue = quantityInput.find(".input-quantity-value");
-  var minusButton = quantityInput.find(".btn-minus");
-  var plusButton = quantityInput.find(".btn-plus");
-  var quantity = parseInt(quantityValue.attr("value"));
-  quantity--;
-  quantityValue.attr("value", quantity);
-  minusButton.prop("disabled", quantity <= 0);
-  plusButton.prop(
-    "disabled",
-    quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
-  );
-  if (quantity < 1) {
-    quantityInput.hide();
-    quantityInput.siblings(".btn-add").show();
-  }
-  updateCartItemQuantity(quantityInput);
-});
-
-$(document).on("click", ".btn-plus", function () {
-  var quantityInput = $(this).closest(".input-quantity");
-  var quantityValue = quantityInput.find(".input-quantity-value");
-  var minusButton = quantityInput.find(".btn-minus");
-  var plusButton = quantityInput.find(".btn-plus");
-  var quantity = parseInt(quantityValue.attr("value"));
-  quantity++;
-  quantityValue.attr("value", quantity);
-  minusButton.prop("disabled", quantity <= 0); // Updated condition
-  plusButton.prop(
-    "disabled",
-    quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
-  );
-  updateCartItemQuantity(quantityInput);
-});
-
-
-
-
-  
-});
-
-
-
     </script>
   </body>
 </html>
