@@ -12,7 +12,8 @@
         align-items: center;
         min-height: 100vh;
         font-family: "Jost", sans-serif;
-        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        background-color: #c99f21;
+        background-image: linear-gradient(315deg, #b38c17 0%, #cf3333 74%);
       }
 
       .main {
@@ -34,7 +35,7 @@
       }
 
       .form-container label {
-        color: #573b8a;
+        color: #000;
         font-weight: bold;
       }
 
@@ -43,8 +44,9 @@
       .form-container input[type="password"] {
         width: 100%;
         padding: 10px;
+        align-items: center;
         margin-bottom: 20px;
-        border: 1px solid #573b8a;
+        border: 1px solid #cf3333;
         border-radius: 5px;
       }
 
@@ -59,7 +61,7 @@
       .form-container button {
         width: 100%;
         padding: 10px;
-        background: #573b8a;
+        background: #cf3333;
         opacity: 0.5;
         color: white;
         font-weight: bold;
@@ -69,7 +71,7 @@
       }
 
       .form-container button:hover {
-        background: #6d44b8;
+        background: #cf3333;
       }
 
       .form-container .stay-signed-in {
@@ -79,17 +81,38 @@
       }
 
       .form-container .stay-signed-in label {
-        color: #573b8a;
+        color: #cf3333;
         margin-left: 10px;
       }
       .main.move-up .form-container {
         transform: translateY(-100%);
         transition: transform 0.5s ease-in-out;
       }
+      .popup {
+  display: none;
+  position: fixed;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  /* padding: 20px; */
+  border-radius: 5px;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
+  z-index: 9999;
+  color: white;
+}
+.popup p {
+  margin-bottom: 50px;
+  color: #3c0505 ;
+}
+
     </style>
   </head>
   <body>
     <div class="main">
+      <div class="popup" id="popup">
+        <p id="popup-message" ></p>
+      </div>
       <h2>SIGN UP</h2>
       <div class="form-container">
         <form id="accountForm" method="POST">
@@ -114,6 +137,17 @@
       </div>
     </div>
     <script>
+    // JavaScript function to show the pop-up message
+    function showPopup(message) {
+      const popup = document.getElementById("popup");
+      const popupMessage = document.getElementById("popup-message");
+      popupMessage.textContent = message;
+      popup.style.display = "block";
+      setTimeout(function() {popup.style.display = "none";}, 5000);
+    }
+    window.onload = function() {
+                showPopup("{{ errormessage }}");
+            };
       // function showOTPForm() {
       //     document.getElementById("accountForm").style.display = "none";
       //     var mainContainer = document.querySelector('.main');

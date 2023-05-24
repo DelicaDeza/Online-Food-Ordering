@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Sign up / Login</title>
     <link rel="stylesheet" href="static/css/login.css" />
+    
   </head>
   <body>
     <div class="main">
@@ -11,6 +12,9 @@
 
       <div class="signup">
         <form>
+          <div class="popup" id="popup">
+            <p id="popup-message" ></p>
+          </div>
           <label for="chk" aria-hidden="true">DelicaDeza</label>
         </form>
       </div>
@@ -20,6 +24,7 @@
           <label for="chk" aria-hidden="true" style="margin-bottom: 20px"
             >Login</label
           >
+          
           <input type="email" name="email" placeholder="Email" required="" />
           <input
             type="password"
@@ -50,4 +55,19 @@
       </div>
     </div>
   </body>
+  <script>
+    // JavaScript function to show the pop-up message
+    function showPopup(message) {
+      const popup = document.getElementById("popup");
+      const popupMessage = document.getElementById("popup-message");
+      popupMessage.textContent = message;
+      popup.style.display = "block";
+      setTimeout(function() {popup.style.display = "none";}, 5000);
+    }
+    window.onload = function() {
+              {% if error_message %}
+                showPopup("{{ error_message }}");
+              {% endif %}
+            };
+  </script>
 </html>

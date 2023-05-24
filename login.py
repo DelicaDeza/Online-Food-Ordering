@@ -27,6 +27,7 @@ def index(app):
                 app.permanent_session_lifetime = timedelta(days=30)
             return redirect(url_for('food'))
         else:
-            return "Invalid email or password"
+            error_message = "Invalid email or password!"
+            return render_template('login.html', error_message=error_message)
 
     return render_template('login.html')
