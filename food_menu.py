@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify,session
 from models import canteens, fooditems, cartitems,cart
 
 
@@ -38,9 +38,10 @@ def update_cart_item_quantity(db):
     data = request.get_json()
     productName = data["productName"]
     quantity = data["quantity"]
+    user_id = session["id"]
 
-    # Find the cart item in the database by product name
-    cart_item = cart.query.filter_by(product_name=productName).first()
+    # Find the cart item in the database by product name and user ID
+    cart_item = cart.query.filter_by(product_name=productName, user_id=user_id).first()
 
     if cart_item:
         if quantity == 0:
@@ -53,4 +54,5 @@ def update_cart_item_quantity(db):
         db.session.commit()
 
     return jsonify({"success": True})
+
 

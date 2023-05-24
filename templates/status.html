@@ -27,7 +27,12 @@
         <h1><b>Cart Summary:</b></h1>
         <div class="input-group">
           <input type="search" placeholder="Search Data..." />
+          
+
         </div>
+        <button class="refresh-button" type="button">
+          <i class="material-icons">refresh</i> <!-- Material Icons refresh icon -->
+        </button>
       </section>
       <section class="table__body">
         <table>
@@ -38,6 +43,7 @@
               <th>Summary <span class="icon-arrow">&UpArrow;</span></th>
             </tr>
           </thead>
+          
           <tbody>
             {% for displaystatus in displaystatus %}
             <tr>
@@ -52,7 +58,7 @@
                 {% endif %}
               </td>
               <td>
-                <div class="dropdown">
+                <div class="dropdown" style="margin-left:auto">
                   <i
                     class="material-icons view-icon"
                     onclick="toggleDropdown('{{ displaystatus.order_id }}')"
@@ -94,8 +100,6 @@
             <tr>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
               <td>
                 <button class="glow-on-hover" type="button">Check Out!</button>
               </td>
@@ -119,6 +123,11 @@
           viewIcon.innerText = "visibility_off";
         }
       }
+      // Add an event listener to the refresh button
+      var refreshButton = document.querySelector(".refresh-button");
+      refreshButton.addEventListener("click", function() {
+        location.reload(); // Reload the page when the button is clicked
+      });
     </script>
   </body>
 </html>

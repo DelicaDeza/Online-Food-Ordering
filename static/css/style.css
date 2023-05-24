@@ -51,6 +51,12 @@ main.table {
 
   transition: 0.2s;
 }
+.refresh-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 
 .table__header .input-group:hover {
   width: 45%;
