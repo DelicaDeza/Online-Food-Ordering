@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify, session, redirect, url_for
-from models import db, cartitems, cart,users
-from food_menu import foodmenu
+from flask import Flask, jsonify, session, redirect
+from models import db, cart
+from food_menu import foodmenu, add_to_cart, update_cart_item_quantity
 from login import index
 from forgot import forgot_password
 from signup import create_account
@@ -24,7 +24,7 @@ def login_required(view):
     @wraps(view)
     def wrapped_view(*args, **kwargs):
         if 'email' not in session:
-            return redirect('/login.html')
+            return redirect('/')
         return view(*args, **kwargs)
     return wrapped_view
 
@@ -38,34 +38,12 @@ def food():
     return foodmenu()
 
 @app.route("/api/cart", methods=["POST"])
-def add_to_cart():
-    data = request.get_json()
-    name = data["name"]
-    netcost = data["netcost"]
-    quantity = data["quantity"]  # Retrieve the quantity from the request data
-
-    if quantity and quantity > 0:  # Check if quantity is not None and greater than 0
-        item = cartitems(name=name, netcost=netcost, quantity=quantity)
-        db.session.add(item)
-        db.session.commit()
-        return jsonify({"success": True})
-    else:
-        return jsonify({"success": False, "error": "Invalid quantity"})
+def add():
+    return add_to_cart(db)
 
 @app.route("/api/cart/update_quantity", methods=["POST"])
-def update_cart_item_quantity():
-  data = request.get_json()
-  productName = data["productName"]
-  quantity = data["quantity"]
-
-  # Find the cart item in the database by product name and update its quantity
-  cart_item = cartitems.query.filter_by(name=productName).first()
-  if cart_item:
-    cart_item.quantity = quantity
-    db.session.commit()
-
-  return jsonify({"success": True})
-
+def update():
+    return update_cart_item_quantity(db)
 
 
 @app.route('/create.html', methods=['GET', 'POST'])
@@ -73,7 +51,7 @@ def signup():
     return create_account(db)
 
 
-@app.route('/login.html', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     return index(app)
 
@@ -87,7 +65,7 @@ def forgot():
 def logout():
     # Clear the email from the session
     session.pop('email', None)
-    return redirect('login.html')
+    return redirect('/')
 
 
 @app.route('/status.html')

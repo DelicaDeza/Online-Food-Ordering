@@ -11,6 +11,9 @@ nav {
   color: inherit;
   background: inherit;
 }
+#brand-link{
+  color:#ff7700
+}
 
 a.nav-link {
   margin: 10px;

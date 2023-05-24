@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, url_for
 import mysql.connector
 from models import users
 from food_menu import foodmenu
@@ -25,7 +25,7 @@ def index(app):
             if stay_logged_in:
                 session.permanent = True
                 app.permanent_session_lifetime = timedelta(days=30)
-            return foodmenu()
+            return redirect(url_for('food'))
         else:
             return "Invalid email or password"
 
