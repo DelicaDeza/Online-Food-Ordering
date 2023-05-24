@@ -1,3 +1,8 @@
+html{
+      color-scheme: dark !important;
+      background-color: #181a1b !important;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,8 +12,9 @@ body {
   min-height: 100vh;
   font-family: "Jost", sans-serif;
   /* background: linear-gradient(to bottom,#ae3f04, #ff7700, #d64900); */
-  background-color: #c99f21;
-  background-image: linear-gradient(315deg, #b38c17 0%, #cf3333 74%);
+  background-color: rgb(161, 127, 26);
+  background-image: linear-gradient(315deg, rgb(143, 112, 18) 0%, rgb(164, 39, 39) 74%);
+  color: rgb(232, 230, 227);
 
 }
 .main {
@@ -39,9 +45,13 @@ label {
   transition: 0.5s ease-in-out;
 }
 input {
+  background-image: initial;
+    background-color: rgb(42, 46, 47);
+    border-color: initial;
+    outline-color: initial;
   width: 60%;
   height: 20px;
-  background: #e0dede;
+  /* background: #e0dede; */
   justify-content: center;
   display: flex;
   margin: 20px auto;
@@ -71,8 +81,11 @@ button:hover {
   background: #cf3333;
 }
 .login {
+    background-image: initial;
+    background-color: rgb(34, 36, 38);
+
   height: 90%;
-  background: #eee;
+  /* background: #eee; */
   border-radius: 60% / 10%;
   transform: translateY(-180px);
   transition: 0.8s ease-in-out;

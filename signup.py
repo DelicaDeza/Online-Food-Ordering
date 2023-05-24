@@ -32,11 +32,4 @@ def create_account(db):
                          phone_number=phone_number, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-
-        response = {
-            'message': 'Account created successfully',
-            'username': username,
-            'email': email,
-            'phone_number': phone_number
-        }
         return redirect(url_for('login'))

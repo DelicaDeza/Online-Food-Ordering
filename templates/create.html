@@ -13,13 +13,19 @@
         min-height: 100vh;
         font-family: "Jost", sans-serif;
         background-color: #c99f21;
-        background-image: linear-gradient(315deg, #b38c17 0%, #cf3333 74%);
+        color:white;
+        /* background-image: linear-gradient(315deg, #b38c17 0%, #cf3333 74%); */
+        background-image: linear-gradient(315deg, rgb(143, 112, 18) 0%, rgb(164, 39, 39) 74%);
+      }
+      html{
+        color-scheme: dark !important;
       }
 
       .main {
         width: 400px;
         height: 600px;
         background: whitesmoke;
+        background-color: rgb(30, 32, 33);
         border-radius: 10px;
         overflow: hidden;
         border-radius: 10px;
@@ -35,7 +41,7 @@
       }
 
       .form-container label {
-        color: #000;
+        color: white;
         font-weight: bold;
       }
 
@@ -48,6 +54,7 @@
         margin-bottom: 20px;
         border: 1px solid #cf3333;
         border-radius: 5px;
+        background-color: rgb(59, 59, 59);
       }
 
       .form-container button:disabled {
@@ -89,29 +96,29 @@
         transition: transform 0.5s ease-in-out;
       }
       .popup {
-  display: none;
-  position: fixed;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        color: white;
+      }
 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: transparent;
-  /* padding: 20px; */
-  border-radius: 5px;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
-  z-index: 9999;
-  color: white;
-}
-.popup p {
-  margin-bottom: 50px;
-  color: #3c0505 ;
-}
-
+      .popup p {
+        margin: 0;
+        color: white;
+      }
     </style>
   </head>
   <body>
     <div class="main">
       <div class="popup" id="popup">
-        <p id="popup-message" ></p>
+        <p id="popup-message"></p>
       </div>
       <h2>SIGN UP</h2>
       <div class="form-container">
@@ -137,17 +144,23 @@
       </div>
     </div>
     <script>
-    // JavaScript function to show the pop-up message
-    function showPopup(message) {
-      const popup = document.getElementById("popup");
-      const popupMessage = document.getElementById("popup-message");
-      popupMessage.textContent = message;
-      popup.style.display = "block";
-      setTimeout(function() {popup.style.display = "none";}, 5000);
-    }
-    window.onload = function() {
-                showPopup("{{ errormessage }}");
-            };
+      // JavaScript function to show the pop-up message
+      function showPopup(message) {
+        const popup = document.getElementById("popup");
+        const popupMessage = document.getElementById("popup-message");
+        popupMessage.textContent = message;
+        popup.style.display = "block";
+        setTimeout(function () {
+          popup.style.display = "none";
+        }, 5000);
+      }
+      window.onload = function () {
+        var errorMessage = "{{ errormessage }}";
+        if (errorMessage) {
+          showPopup(errorMessage);
+        }
+      };
+
       // function showOTPForm() {
       //     document.getElementById("accountForm").style.display = "none";
       //     var mainContainer = document.querySelector('.main');
