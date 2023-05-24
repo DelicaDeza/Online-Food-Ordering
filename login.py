@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, session, redirect, url_for
-import mysql.connector
+from flask import render_template, request, session, redirect, url_for
 from models import users
 from food_menu import foodmenu
 from datetime import timedelta
 import bcrypt
+
 
 def index(app):
     if request.method == 'POST':
@@ -18,7 +18,7 @@ def index(app):
             # Store the user's email in the session for authentication
             session['email'] = user.email
             user = users.query.filter_by(email=email).first()
-    
+
             if user:
                 # Retrieve the username from the user object
                 session['username'] = user.username

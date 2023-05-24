@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, session,jsonify
+from flask import render_template, session
 from models import cart, status, users
 
 

@@ -37,9 +37,11 @@ app = create_app()
 def food():
     return foodmenu()
 
+
 @app.route("/api/cart", methods=["POST"])
 def add():
     return add_to_cart(db)
+
 
 @app.route("/api/cart/update_quantity", methods=["POST"])
 def update():

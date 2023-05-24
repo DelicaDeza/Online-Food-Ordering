@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, jsonify
+from flask import render_template, request
 from flask_mail import Mail, Message
 import random
 import string
 from models import users
-from flask_sqlalchemy import SQLAlchemy
 import bcrypt
+
 
 def forgot_password(app, db):
     # app = Flask(name)
@@ -24,7 +24,8 @@ def forgot_password(app, db):
             new_password = ''.join(random.choices(
                 string.ascii_uppercase + string.ascii_lowercase + string.digits, k=8))
             # Hash the new password
-            hashed_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
+            hashed_password = bcrypt.hashpw(
+                new_password.encode('utf-8'), bcrypt.gensalt())
             # Update the user's password in the database
             user.password = hashed_password
             db.session.commit()

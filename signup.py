@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import render_template, request, jsonify
 from models import users
 from sqlalchemy import or_
 import bcrypt
+
 
 def create_account(db):
     # Retrieve the create.html form data
@@ -23,7 +24,8 @@ def create_account(db):
         }
     else:
         # Hash the password
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password = bcrypt.hashpw(
+            password.encode('utf-8'), bcrypt.gensalt())
 
         # Insert the new account into the database
         new_user = users(username=username, email=email,
