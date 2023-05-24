@@ -152,7 +152,7 @@
           var minusButton = quantityInput.find(".btn-minus");
           var plusButton = quantityInput.find(".btn-plus");
           var quantity = parseInt(quantityValue.val());
-          minusButton.prop("disabled", quantity <= 1);
+          minusButton.prop("disabled", quantity <= 0);
           plusButton.prop("disabled", quantity >= maxQuantity);
         });
 
@@ -235,15 +235,35 @@ function updateCartItemQuantity(quantityInput) {
 
 
 $(document).ready(function() {
-  $(".btn-minus").on("click", function () {
+  $(document).on("click", ".btn-minus", function () {
   var quantityInput = $(this).closest(".input-quantity");
   var quantityValue = quantityInput.find(".input-quantity-value");
   var minusButton = quantityInput.find(".btn-minus");
   var plusButton = quantityInput.find(".btn-plus");
-  var quantity = parseInt(quantityValue.attr("value")); // Retrieve the value from the attribute
+  var quantity = parseInt(quantityValue.attr("value"));
   quantity--;
-  quantityValue.attr("value", quantity); // Update the value attribute of the input field
+  quantityValue.attr("value", quantity);
   minusButton.prop("disabled", quantity <= 0);
+  plusButton.prop(
+    "disabled",
+    quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
+  );
+  if (quantity < 1) {
+    quantityInput.hide();
+    quantityInput.siblings(".btn-add").show();
+  }
+  updateCartItemQuantity(quantityInput);
+});
+
+$(document).on("click", ".btn-plus", function () {
+  var quantityInput = $(this).closest(".input-quantity");
+  var quantityValue = quantityInput.find(".input-quantity-value");
+  var minusButton = quantityInput.find(".btn-minus");
+  var plusButton = quantityInput.find(".btn-plus");
+  var quantity = parseInt(quantityValue.attr("value"));
+  quantity++;
+  quantityValue.attr("value", quantity);
+  minusButton.prop("disabled", quantity <= 0); // Updated condition
   plusButton.prop(
     "disabled",
     quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
@@ -251,21 +271,6 @@ $(document).ready(function() {
   updateCartItemQuantity(quantityInput);
 });
 
-$(".btn-plus").on("click", function () {
-  var quantityInput = $(this).closest(".input-quantity");
-  var quantityValue = quantityInput.find(".input-quantity-value");
-  var minusButton = quantityInput.find(".btn-minus");
-  var plusButton = quantityInput.find(".btn-plus");
-  var quantity = parseInt(quantityValue.attr("value")); // Retrieve the value from the attribute
-  quantity++;
-  quantityValue.attr("value", quantity); // Update the value attribute of the input field
-  minusButton.prop("disabled", quantity <= 1);
-  plusButton.prop(
-    "disabled",
-    quantity >= parseInt(quantityInput.siblings(".btn-add").data("max"))
-  );
-  updateCartItemQuantity(quantityInput);
-});
 
 
 
