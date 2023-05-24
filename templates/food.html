@@ -197,6 +197,7 @@
       name: name,
       netcost: netcost,
       quantity: quantity,
+      user_id: {{ session['id'] }}
     }),
     success: function (response) {
       alert("Item added to cart!");

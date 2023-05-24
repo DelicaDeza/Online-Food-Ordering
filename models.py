@@ -31,7 +31,7 @@ class fooditems(db.Model):
 
 
 class cart(db.Model):
-    product_id = db.Column(db.String(3), primary_key=True)
+    product_id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String(80), unique=True, nullable=False)
     product_cost = db.Column(db.Integer, nullable=False)
     product_quantity = db.Column(db.Integer, nullable=False)

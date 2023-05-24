@@ -46,7 +46,8 @@
         <table id="table">
           <thead>
             <tr>
-              <th>ID <span class="icon-arrow">&UpArrow;</span></th>
+              <th>Sno</th>
+              <!-- <th>ID <span class="icon-arrow">&UpArrow;</span></th> -->
               <th>Name<span class="icon-arrow">&UpArrow;</span></th>
               <th>Quantity <span class="icon-arrow">&UpArrow;</span></th>
               <th>Unit Cost <span class="icon-arrow">&UpArrow;</span></th>
@@ -57,7 +58,8 @@
           <tbody>
             {% for displaycart in displaycart %}
             <tr>
-              <td>{{ displaycart.product_id }}</td>
+              <td>{{ loop.index }}</td>
+              <!-- <td>{{ displaycart.product_id }}</td> -->
               <td>{{ displaycart.product_name }}</td>
               <td>{{ displaycart.product_quantity }}</td>
               <td>{{ displaycart.product_cost}}</td>

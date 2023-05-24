@@ -1,5 +1,5 @@
 from flask import render_template, request, jsonify
-from models import canteens, fooditems, cartitems
+from models import canteens, fooditems, cartitems,cart
 
 
 def foodmenu():
@@ -14,9 +14,10 @@ def add_to_cart(db):
     name = data["name"]
     netcost = data["netcost"]
     quantity = data["quantity"]  # Retrieve the quantity from the request data
+    user_id = data["user_id"]
 
     if quantity and quantity > 0:  # Check if quantity is not None and greater than 0
-        item = cartitems(name=name, netcost=netcost, quantity=quantity)
+        item = cart(product_name=name, product_cost=netcost, product_quantity=quantity,status_id=3,user_id= user_id)
         db.session.add(item)
         db.session.commit()
         return jsonify({"success": True})
