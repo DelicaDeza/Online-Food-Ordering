@@ -20,6 +20,7 @@
         width: 350px;
         height: 350px;
         /* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); */
+    background-color: rgb(42, 46, 47);
         overflow: hidden;
         border-radius: 10px;
         box-shadow: 5px 20px 50px #000;
@@ -84,6 +85,9 @@
   </head>
   <body>
     <div class="main">
+      <div id="popup-message" class="popup-message">
+        <span id="popup-message-text"></span>
+      </div>
       <form class="forgot-form" method="post" id="forgot-form">
         <label>Forgot Password</label>
         <input type="email" name="email" placeholder="Email" required="" />
@@ -136,9 +140,7 @@
       // <div id="popup-message" style="display: none;"></div>
     </script>
 
-    <div id="popup-message" class="popup-message">
-      <span id="popup-message-text"></span>
-    </div>
+    
 
     <!-- Rest of your HTML code -->
   </body>
