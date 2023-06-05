@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Items</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/food-items.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function confirmRemoval(foodName, foodId) {
+      var result = confirm("Are you sure you want to remove " + foodName + "?");
+      if (result) {
+        // Redirect to remove URL
+        window.location.href = "/remove-food/" + foodId;
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Food Items</h1>
+    <form action="/food-items" method="POST">
+      {% for canteen in canteens %}
+        <h2>{{ canteen.name }}</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Food Name</th>
+              <th>Quantity</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for food_item in canteen.fooditems %}
+              <tr>
+                <td>{{ food_item.name }}</td>
+                <td>
+                  <input type="number" class="form-control" name="quantity" value="{{ food_item.quantity }}" required>
+                  <input type="hidden" name="food-item" value="{{ food_item.idfooditems }}">
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger" onclick="confirmRemoval('{{ food_item.name }}', '{{ food_item.idfooditems }}')">Remove</button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</body>
+</html>

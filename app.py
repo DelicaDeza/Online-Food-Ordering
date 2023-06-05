@@ -8,7 +8,7 @@ from datetime import timedelta
 from functools import wraps
 from cartstatus import statusmenu, cartmenu
 from history import view_order_history
-from foodmanage import add_food
+from foodmanage import add_food,food_items
 
 
 def create_app():
@@ -121,6 +121,10 @@ def order():
 @app.route('/add-food', methods=['GET','POST'])
 def foodadd():
     return add_food(db)
+
+@app.route('/food-items', methods=['GET', 'POST'])
+def foodremve():
+    return food_items(db)
 
 
 if __name__ == '__main__':
