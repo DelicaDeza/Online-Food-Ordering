@@ -1,104 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Food Items</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="static/css/food.css" />
-    <link rel="stylesheet" href="static/css/navbar.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/food.css">
+    <link rel="stylesheet" href="static/css/navbar.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <div class="navcontainer">
-      <div class="row">
+
+    <style>
+   .btn-block {
+    margin-bottom: 20px;
+    margin-top:60px;
+}
+
+.col-md-4 {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+}
+
+/* Custom button styles */
+.btn-primary {
+    background-color: rgb(248, 239, 203);
+    color: #ff7b00;
+    border-color: #ff000079;
+    transition: all 0.3s ease-in-out;
+    font-size: 18px;
+    padding: 30px;
+    border-radius: 20px;
+    
+}
+
+.btn-primary:hover {
+    background-color: #ff8800;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 149, 0, 0.756);
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 238, 0, 0.5);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.row:last-of-type {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+  <div class="navcontainer">
+    <div class="row">
         <div class="col-2"></div>
         <nav class="navbar navbar-expand-lg bg-light col mt-4">
-          <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">DelicaDeza</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="portfolio.html">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="inventory.html">Inventory</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="menu.html">Menu</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="status.html">Status</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="error.html">Error Detection</a>
-                </li>
-              </ul>
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">DelicaDeza</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-primary" type="submit">Logout</button>
+                    </form>
+                </div>
             </div>
-          </div>
         </nav>
         <div class="col-2"></div>
-      </div>
     </div>
+</div>
 
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search for food items...">
-      <a href="#" id="search-button"><label for="search-input" id="search-button"><span class="material-icons" style="vertical-align: middle">search</span></label></a>
-    </div>
+
+
+    
 
     <div class="container">
-      {% for canteen1 in canteen %}
-      <div
-        id="{{ canteen1.name|replace(' ', '_')}}"
-        class="food-list"
-        style="display: none"
-      >
         <div class="row">
-          <div class="col-md-6">
-            {% for food in food_items %} {% if food.canteensid ==
-            canteen1.idcanteens %}
-            <div class="food-item" id="{{ food.name|replace(' ', '') |lower}}">
-              <div class="food-image-overlay">
-                <img
-                  src="{{ food.image }}"
-                  alt="{{ food.name }}"
-                  class="food-image"
-                />
-              </div>
-              <h3 class="food-name">{{ food.name }}</h3>
-              <p class="food-price">Price: {{ food.price }}</p>
-              <div class="food-quantity">
-                <button
-                  class="btn btn-outline-primary btn-add"
-                           >
-                  {{ food.quantity }}
-                </button>
-              </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block">Search</button>
             </div>
-            {% endif %} {% endfor %}
-          </div>
-          <div class="col-md-6">
-            <img src="path/to/other-image.jpg" alt="Other Image" class="other-image">
-          </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block">Add/Delete Menu Items</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block">Edit Menu Items</button>
+            </div>
+            
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block">Error Detection</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block">Portfolio</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block">Status</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block">Inventory</button>
+            </div>
         </div>
-      </div>
-      {% endfor %}
     </div>
-  </body>
+</body>
 </html>
