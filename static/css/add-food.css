@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url("https://img.freepik.com/free-photo/tasty-pizza-near-ingredients_23-2147772080.jpg?size=626&ext=jpg&ga=GA1.1.196243977.1684836876&semt=ais");
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg"); */
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url("https://t3.ftcdn.net/jpg/02/86/82/40/360_F_286824061_xx36YF5NEIrUnvHMrQaiRgVzwfDhRphF.jpg"); */
+  overflow-x: hidden;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: "Jost", sans-serif;
+}
+/* overlay for background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black color */
+  z-index: -1;
+}
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    width: 100%;
+  }
+  

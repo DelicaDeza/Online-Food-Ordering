@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Items</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/food-items.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function confirmRemoval(foodName, foodId) {
+            var confirmation = document.getElementById("confirmation");
+            confirmation.style.display = "block";
+            var message = document.getElementById("message");
+            message.innerHTML = "Are you sure you want to remove " + foodName + "?";
+            var yesButton = document.getElementById("yes-button");
+            yesButton.onclick = function() {
+                // Redirect to remove URL
+                window.location.href = "/remove-food/" + foodId;
+            };
+            var noButton = document.getElementById("no-button");
+            noButton.onclick = function() {
+                confirmation.style.display = "none";
+            };
+        }
+    </script>
+    <style>
+        #confirmation {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        #confirmation-box {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            text-align: center;
+        }
+        #yes-button, #no-button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Food Items</h1>
+        <form action="/food-items" method="POST">
+            {% for canteen in canteens %}
+                <h2>{{ canteen.name }}</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Food Name</th>
+                            <th>Quantity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for food_item in canteen.fooditems %}
+                            <tr>
+                                <td>{{ food_item.name }}</td>
+                                <td>
+                                    <input type="number" class="form-control" name="quantity" value="{{ food_item.quantity }}" required>
+                                    <input type="hidden" name="food-item" value="{{ food_item.idfooditems }}">
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" onclick="confirmRemoval('{{ food_item.name }}', '{{ food_item.idfooditems }}')">Remove</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+    <div id="confirmation">
+        <div id="confirmation-box">
+            <p id="message"></p>
+            <button id="yes-button" class="btn btn-danger">Yes</button>
+            <button id="no-button" class="btn btn-primary">No</button>
+        </div>
+    </div>
+</body>
+</html>
