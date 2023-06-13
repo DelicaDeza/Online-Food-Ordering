@@ -69,3 +69,13 @@ class cartitems(db.Model):
     name = db.Column(db.String(50), nullable=False)
     netcost = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
+
+
+class admincan(db.Model):
+    # _tablename_='admincan'
+    
+    adminid=db.Column(db.Integer,primary_key=True)
+    username=db.Column(db.String(100))
+    canteen_id=db.Column(db.Integer,db.ForeignKey('canteens.idcanteens'),nullable=False)
+    def _rep_(self):
+        return f"<admincan {self.adminid}>"

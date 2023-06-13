@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, session, redirect
-from models import db, cart
+from flask import Flask, jsonify, render_template, session, redirect
+from models import db, cart,admincan,canteens,fooditems
 from food_menu import foodmenu, add_to_cart, update_cart_item_quantity
 from login import index
 from forgot import forgot_password
@@ -117,6 +117,12 @@ def delete_item(product_id):
 def order():
     return view_order_history()
 
+@app.route("/admin")
+def adminpage():
+    manid = admincan.query.get(1)
+    canteen = canteens.query.filter_by(idcanteens=manid.canteen_id).all()
+    food_items = fooditems.query.all()
+    return render_template("dashadmin.html", food_items=food_items, canteen=canteen)
 
 if __name__ == '__main__':
     app.run(debug=True)
