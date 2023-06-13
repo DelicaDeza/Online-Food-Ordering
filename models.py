@@ -79,3 +79,11 @@ class admincan(db.Model):
     canteen_id=db.Column(db.Integer,db.ForeignKey('canteens.idcanteens'),nullable=False)
     def _rep_(self):
         return f"<admincan {self.adminid}>"
+    
+class logs(db.Model):
+    transid = db.Column(db.Integer, primary_key=True)
+    itemname = db.Column(db.String(50), nullable=False)
+    itemquantity = db.Column(db.Float, nullable=False)
+    itemcost = db.Column(db.Integer, nullable=False)
+    itemdate = db.Column(db.Date)
+    transactionno = db.Column(db.Integer)
