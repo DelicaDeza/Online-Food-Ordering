@@ -17,7 +17,9 @@ class users(db.Model):
 class canteens(db.Model):
     idcanteens = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
-    fooditems = db.relationship('fooditems', backref='canteen', lazy=True)
+    # fooditems = db.relationship('fooditems', backref='canteen', lazy=True)
+    logs = db.relationship('logs', back_populates='canteenslogs', lazy = True)
+
 
 
 class fooditems(db.Model):
@@ -87,3 +89,13 @@ class logs(db.Model):
     itemcost = db.Column(db.Integer, nullable=False)
     itemdate = db.Column(db.Date)
     transactionno = db.Column(db.Integer)
+    canteen_id = db.Column(db.Integer, db.ForeignKey('canteens.idcanteens'))
+    canteenslogs = db.relationship('canteens', back_populates='logs')
+
+
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    order_status = db.Column(db.String(20))
+
+    def __init__(self, order_status):
+        self.order_status = order_status

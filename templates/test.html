@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Items EDA</title>
+    <link rel="stylesheet" href="/static/css/food.css" />
+    <link rel="stylesheet" href="/static/css/navbar.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <!-- <h1>Food Items EDA</h1> -->
+    <!-- <p>Number of unique items: {{ eda_results.unique_items }}</p>
+    <p>Total quantity purchased: {{ eda_results.total_quantity }}</p>
+    <p>Total cost of items purchased: {{ eda_results.total_cost }}</p>
+
+    <div id="sales_chart"></div>
+
+    <div>
+        <h2>Sales over Time</h2>
+        <img src="{{ url_for('static', filename='sales_over_time.png') }}" alt="Sales over Time">
+    </div>
+
+    <div>
+        <h2>Distribution of Sales by Item</h2>
+        <img src="{{ url_for('static', filename='sales_distribution.png') }}" alt="Distribution of Sales by Item">
+    </div>
+
+    <div>
+        <h2>Item Quantity vs Item Cost</h2>
+        <img src="{{ url_for('static', filename='quantity_cost_scatter.png') }}" alt="Item Quantity vs Item Cost">
+    </div>
+
+    <div>
+        <h2>Distribution of Sales</h2>
+        <img src="{{ url_for('static', filename='sales_distribution_hist.png') }}" alt="Distribution of Sales">
+    </div>
+
+    <div>
+        <h2>Sales Distribution by Item</h2>
+        <img src="{{ url_for('static', filename='sales_distribution_boxplot.png') }}" alt="Sales Distribution by Item">
+    </div>
+
+    <script>
+        // Extract the data for the bar plot from Flask template variables
+        var salesData = {
+          x: [],
+          y: [],
+          type: 'bar',
+          orientation: 'h'
+        };
+      
+        // Populate the salesData arrays
+        {% for item in top_items %}
+          salesData.x.push({{ item.itemquantity }});
+          salesData.y.push('{{ item.itemname }}');
+        {% endfor %}
+      
+        var layout = {
+          title: 'Top Food Items by Sales',
+          xaxis: { title: 'Sales Quantity' },
+          yaxis: { title: 'Item Name' }
+        };
+      
+        Plotly.newPlot('sales_chart', [salesData], layout);
+    </script> -->
+</body>
+</html>

@@ -10,6 +10,7 @@ from cartstatus import statusmenu, cartmenu
 from history import view_order_history
 from foodmanage import add_food,food_items
 from logs import eda
+from cartupdate import update_status
 
 
 def create_app():
@@ -136,5 +137,9 @@ def foodremve():
 @app.route('/eda')
 def analysis():
     return eda()
+
+@app.route('/update_status', methods=['GET','POST'])
+def updatee():
+    return update_status(db)
 if __name__ == '__main__':
     app.run(debug=True)
