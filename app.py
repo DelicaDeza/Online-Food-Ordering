@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, render_template, session, redirect
-from models import db, cart,admincan,canteens,fooditems
+from flask import Flask, jsonify, render_template, request, session, redirect, url_for
+from models import db, cart,admincan,canteens,fooditems,users
 from food_menu import foodmenu, add_to_cart, update_cart_item_quantity
 from login import index
 from forgot import forgot_password
@@ -11,6 +11,8 @@ from history import view_order_history
 from foodmanage import add_food,food_items
 from logs import eda
 from cartupdate import update_status
+from payment import send_otp
+from reset import reset_password
 
 
 def create_app():
@@ -141,5 +143,33 @@ def analysis():
 @app.route('/update_status', methods=['GET','POST'])
 def updatee():
     return update_status(db)
+
+@app.route('/payment', methods=['GET','POST'])
+def payment():
+    return send_otp(app)
+    
+@app.route('/reset.html', methods=['GET', 'POST'])
+def reset():
+    return reset_password(db)
+
+@app.route('/profile')
+def profilepage():
+    user_id = session.get('idusers')
+    user = users.query.filter_by(idusers=user_id).first()
+    return render_template('profile.html', user=user)
+
+@app.route('/update/<int:user_idusers>', methods=['POST'])
+def update_user(user_idusers):
+    user = users.query.get(user_idusers)
+    if user:
+        user.username = request.form['username']
+        user.phone_number = request.form['phone_number']
+        user.email = request.form['email']
+        db.session.commit()
+        return redirect(url_for('index'))
+    else:
+        return "User not found"
+
+
 if __name__ == '__main__':
     app.run(debug=True)

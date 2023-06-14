@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" title="Status">
+<head>
+  <title>Cart Status</title>
+  <link rel="stylesheet" href="static/css/style.css" />
+  <link rel="stylesheet" href="static/css/food.css" />
+  <link rel="stylesheet" href="static/css/navbar.css" />
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+  <main class="table">
+    <section class="table__header">
+      <h1><b>Cart Summary:</b></h1>
+      <div class="input-group">
+        <input type="search" placeholder="Search Data..." />
+      </div>
+      <button class="refresh-button" type="button">
+        <i class="material-icons">refresh</i>
+        <!-- Material Icons refresh icon -->
+      </button>
+    </section>
+    <section class="table__body">
+      <table>
+        <thead>
+          <tr>
+            <th>ID <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Status <span class="icon-arrow">&UpArrow;</span></th>
+            <th>Summary <span class="icon-arrow">&UpArrow;</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for displaystatus in displaystatus %}
+          <tr>
+            <td>{{ displaystatus.order_id }}</td>
+            <td>
+              {% if displaystatus.order_status == "Ready!" %}
+              <p class="status delivered">{{ displaystatus.order_status }}</p>
+              {% elif displaystatus.order_status == "Preparing!" %}
+              <p class="status pending">{{ displaystatus.order_status }}</p>
+              {% else %}
+              <p class="status shipped">{{ displaystatus.order_status }}</p>
+              {% endif %}
+            </td>
+            <td>
+              <div class="dropdown" style="margin-left: auto">
+                <i
+                  class="material-icons view-icon"
+                  onclick="toggleDropdown('{{ displaystatus.order_id }}')"
+                  id="viewIcon{{ displaystatus.order_id }}"
+                >
+                  visibility
+                </i>
+                <div
+                  id="dropdownContent{{ displaystatus.order_id }}"
+                  style="display: none"
+                >
+                  {% for displaycart1 in displaycart %}{% if
+                  displaycart1.status_id == displaystatus.order_id %}
+                  <div class="product-details">
+                    <i
+                      class="material-icons quantity-icon"
+                      style="color: #a37b7b"
+                    >
+                      layers
+                    </i>
+                    <span class="quantity" style="color: #a37b7b">
+                      {{ displaycart1.product_quantity }}
+                    </span>
+                    <span class="product-name">
+                      {{ displaycart1.product_name }}
+                    </span>
+                    <span class="product-info">
+                      <span class="cost-symbol">&#8377;</span>
+                      <span class="total-cost">
+                        {{ displaycart1.product_cost * displaycart1.product_quantity }}
+                      </span>
+                    </span>
+                  </div>
+                  {% endif %} {% endfor %}
+                  {% if displaystatus.order_status == "Waiting for Confirmation" %}
+                  <button class="cancel-button" onclick="cancelOrder('{{ displaystatus.order_id }}')">
+                    Cancel Order
+                  </button>
+                  {% endif %}
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script>
+    // JavaScript functions and logic here
+    function toggleDropdown(orderId) {
+      var dropdownContent = document.getElementById(
+        "dropdownContent" + orderId
+      );
+      var viewIcon = document.getElementById("viewIcon" + orderId);
+
+      if (dropdownContent.style.display === "none") {
+        dropdownContent.style.display = "block";
+        viewIcon.innerHTML = "visibility_off";
+      } else {
+        dropdownContent.style.display = "none";
+        viewIcon.innerHTML = "visibility";
+      }
+    }
+
+    function cancelOrder(orderId) {
+    // Show confirmation pop-up
+    var confirmation = confirm("Are you sure you want to cancel this order?");
+
+    if (confirmation) {
+      // Redirect to the cancel order route
+      window.location.href = "/cancel_order/" + orderId;
+    } else {
+      console.log("Cancel order operation cancelled");
+    }
+  }
+  </script>
+</body>
+</html>
