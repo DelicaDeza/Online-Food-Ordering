@@ -173,7 +173,7 @@ def update_user(user_idusers):
     else:
         return "User not found"
 
-@app.route('/verify')
+@app.route('/verify',methods=['GET', 'POST'])
 def verify():
     return check()
 
