@@ -17,7 +17,7 @@ class users(db.Model):
 class canteens(db.Model):
     idcanteens = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
-    # fooditems = db.relationship('fooditems', backref='canteen', lazy=True)
+    fooditems = db.relationship('fooditems', backref='canteen', lazy=True)
     logs = db.relationship('logs', back_populates='canteenslogs', lazy = True)
 
 
@@ -99,3 +99,12 @@ class Order(db.Model):
 
     def __init__(self, order_status):
         self.order_status = order_status
+
+class Verify(db.Model):
+    __tablename__ = 'verify'
+    gmail = db.Column(db.String(255), primary_key=True)
+    otp = db.Column(db.String(10))
+
+    def __init__(self, gmail, otp):
+        self.gmail = gmail
+        self.otp = otp

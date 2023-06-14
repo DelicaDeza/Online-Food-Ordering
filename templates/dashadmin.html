@@ -99,10 +99,13 @@
                 <button class="btn btn-primary btn-block">Search</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-primary btn-block">Add/Delete Menu Items</button>
+                <button class="btn btn-primary btn-block"onclick="redirectToAdd()">Add Items</button>
             </div>
             <div class="col-md-3">
-                <button class="btn btn-primary btn-block">Edit Menu Items</button>
+                <button class="btn btn-primary btn-block" onclick="redirectToEdit()">Edit/Delete Menu Items</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block"onclick="redirectToeda()">Data Analysis</button>
             </div>
             
             <div class="col-md-3">
@@ -120,4 +123,15 @@
         </div>
     </div>
 </body>
+<script>
+    function redirectToAdd() {
+        window.location.href = "{{ url_for('foodadd') }}";
+    }
+    function redirectToEdit() {
+        window.location.href = "{{ url_for('foodremve') }}";
+    }
+    function redirectToeda() {
+        window.location.href = "{{ url_for('analysis') }}";
+    }
+</script>
 </html>

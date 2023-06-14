@@ -13,7 +13,7 @@ from logs import eda
 from cartupdate import update_status
 from payment import send_otp
 from reset import reset_password
-
+from verify import check
 
 def create_app():
     app = Flask(__name__)
@@ -128,7 +128,7 @@ def adminpage():
     canteen = canteens.query.filter_by(idcanteens=manid.canteen_id).all()
     food_items = fooditems.query.all()
     return render_template("dashadmin.html", food_items=food_items, canteen=canteen)
-@app.route('/add-food', methods=['GET','POST'])
+@app.route('/add', methods=['GET','POST'])
 def foodadd():
     return add_food(db)
 
@@ -146,7 +146,7 @@ def updatee():
 
 @app.route('/payment', methods=['GET','POST'])
 def payment():
-    return send_otp(app)
+    return send_otp(app,db)
     
 @app.route('/reset.html', methods=['GET', 'POST'])
 def reset():
@@ -154,9 +154,12 @@ def reset():
 
 @app.route('/profile')
 def profilepage():
-    user_id = session.get('idusers')
-    user = users.query.filter_by(idusers=user_id).first()
-    return render_template('profile.html', user=user)
+    if 'username' in session:
+        username = session['username']
+        user = users.query.filter_by(username=username).first()
+        return render_template('profile.html', users=[user])
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/update/<int:user_idusers>', methods=['POST'])
 def update_user(user_idusers):
@@ -169,6 +172,10 @@ def update_user(user_idusers):
         return redirect(url_for('index'))
     else:
         return "User not found"
+
+@app.route('/verify')
+def verify():
+    return check()
 
 
 if __name__ == '__main__':

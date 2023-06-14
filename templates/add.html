@@ -6,9 +6,12 @@
   <link rel="stylesheet" href="/static/css/add-food.css">
 </head>
 <body>
+  {% include 'navbar.html' %}
+
+  <br><br>
   <div class="container">
     <h1>Add Food Item</h1>
-    <form action="/add-food" method="POST">
+    <form action="/add" method="POST">
       <div class="form-group">
         <label for="food-name">Food Name:</label>
         <input type="text" class="form-control" id="food-name" name="food-name" required>

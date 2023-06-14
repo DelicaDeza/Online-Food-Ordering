@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verification Form</title>
+</head>
+<body>
+    <h2>Verification Form</h2>
+    <form method="POST" action="{{ url_for('verify') }}">
+        <label for="gmail">Gmail:</label><br>
+        <input type="text" id="gmail" name="gmail" placeholder="Enter your Gmail"><br><br>
+        
+        <label for="otp">OTP:</label><br>
+        <input type="text" id="otp" name="otp" placeholder="Enter the OTP"><br><br>
+        
+
+        <button type="submit" formmethod="post" formaction="/verify">Verify</button>
+    </form>
+</body>
+</html>

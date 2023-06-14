@@ -10,6 +10,7 @@ def set_password(self, password):
 
 def verify_password(self, password):
     return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
+
 def reset_password(db):
     if request.method == 'POST':
         current_password = request.form['current_password']
@@ -24,7 +25,7 @@ def reset_password(db):
                 user.set_password(new_password)
                 db.session.commit()
                 flash('Password has been reset successfully!', 'success')
-                return redirect(url_for('index'))
+                return redirect(url_for('/'))
             else:
                 flash('New password and confirm password do not match.', 'error')
         else:

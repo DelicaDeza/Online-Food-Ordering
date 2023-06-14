@@ -90,7 +90,7 @@
               <td></td>
               <td></td>
               <td>
-                <button class="glow-on-hover" type="button">Check Out!</button>
+                <button class="glow-on-hover"onclick = "redirectTopayment()" type="button">Check Out!</abutton>
               </td>
             </tr>
           </tbody>
@@ -112,6 +112,9 @@
               },
             });
           }
+          function redirectTopayment() {
+        window.location.href = "{{ url_for('payment') }}";
+    }
         </script>
       </section>
     </main>
