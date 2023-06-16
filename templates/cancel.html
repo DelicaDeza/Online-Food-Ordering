@@ -5,10 +5,14 @@
   <link rel="stylesheet" href="static/css/style.css" />
   <link rel="stylesheet" href="static/css/food.css" />
   <link rel="stylesheet" href="static/css/navbar.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+
 </head>
 
 <body>
-  {% include 'navbar.html' %}
   <main class="table">
     <section class="table__header">
       <h1><b>Cart Summary:</b></h1>
@@ -79,7 +83,7 @@
                     </span>
                   </div>
                   {% endif %} {% endfor %}
-                  {% if displaystatus.order_status == "Waiting for Confirmation" %}
+                  {% if displaystatus.order_id == 3 %}
                   <button class="cancel-button" onclick="cancelOrder('{{ displaystatus.order_id }}')">
                     Cancel Order
                   </button>

@@ -2,18 +2,34 @@
 <html>
 <head>
     <title>Verification Form</title>
+    <link rel="stylesheet" href="static/css/verify.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='verify2.css') }}">
 </head>
 <body>
-    <h2>Verification Form</h2>
-    <form method="POST" action="{{ url_for('verify') }}">
-        <label for="gmail">Gmail:</label><br>
-        <input type="text" id="gmail" name="gmail" placeholder="Enter your Gmail"><br><br>
-        
-        <label for="otp">OTP:</label><br>
-        <input type="text" id="otp" name="otp" placeholder="Enter the OTP"><br><br>
-        
-
-        <button type="submit" formmethod="post" formaction="/verify">Verify</button>
-    </form>
+    
+    <div class="login-box">
+        <h2>OTP Verification</h2>
+        <form method="POST" action="{{ url_for('verify') }}"
+      >
+          <div class="user-box">
+                <input type="text" id="gmail" name="gmail" placeholder="Enter your Gmail">
+                <label for="gmail">Email address</label>
+      
+          </div>
+          <div class="user-box">
+                <label for="otp">OTP:</label><br>
+                <input type="text" id="otp" class="form-control"  name="otp" placeholder="Enter the OTP">
+      
+          </div>
+          <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+              <button type="submit" class="w-100 btn btn-lg" formmethod="post" formaction="/verify">Verify</button>
+      
+          </a>
+        </form>
+      </div>
 </body>
 </html>

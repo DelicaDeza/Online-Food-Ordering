@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" title="Status">
+<head>
+  <title>Refund</title>
+  <link rel="stylesheet" href="static/css/style.css" />
+  <link rel="stylesheet" href="static/css/food.css" />
+  <link rel="stylesheet" href="static/css/navbar.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #f1f1f1; /* Set the desired background color */
+    }
+
+    .form-container {
+      text-align: center;
+      margin-top: 20px;
+      background-color: transparent; /* Remove the background color */
+    }
+
+    .form-container button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: ;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #45a049;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup button {
+      margin: 10px;
+    }
+  </style>
+    <script>
+        function showRefundConfirmation() {
+          var popup = document.createElement('div');
+          popup.className = 'popup';
+          popup.innerHTML = '<h3>Refund Initiated</h3>';
+          document.body.appendChild(popup);
+        }
+    
+        function redirectToFoodMenu() {
+        window.location.href = "{{ url_for('food') }}";
+    }
+    
+        function cancelOrder(orderId) {
+          // Show confirmation pop-up
+          var confirmation = confirm("Are you sure you want to cancel this order?");
+    
+          if (confirmation) {
+            // Get the price of the item being canceled
+            var price = getPriceOfItem(orderId);
+            
+            // Redirect to refund.html with the price as a query parameter
+            window.location.href = "refund.html?price=" + price;
+          } else {
+            console.log("Cancel order operation cancelled");
+          }
+        }
+    
+        function getPriceOfItem(orderId) {
+          // Logic to get the price of the item associated with the orderId
+          // Replace this with your actual implementation
+          var price = 0; // Placeholder value
+          // Implement your logic to retrieve the price based on the orderId
+          
+          return price;
+        }
+    
+        // Retrieve the price from the query parameter
+        function retrievePriceFromQueryParameter() {
+          var queryString = window.location.search;
+          var urlParams = new URLSearchParams(queryString);
+          var price = urlParams.get("price");
+    
+          console.log("Price of canceled item: " + price);
+        }
+    
+        // Call the function to retrieve the price from the query parameter
+        retrievePriceFromQueryParameter();
+      </script>
+    </head>
+
+<body>
+  <main class="table">
+    <section class="table__header">
+      <h1><b>REFUND</b></h1>
+      <button class="refresh-button" type="button">
+        <i class="material-icons">refresh</i>
+        <!-- Material Icons refresh icon -->
+      </button>
+    </section>
+    <section class="table__body">
+      <div class="form-container">
+        <h2>Chose any one of the following options</h2>
+        <button onclick="redirectToFoodMenu()">Order Something Else</button>
+        <button onclick="showRefundConfirmation()">Request Refund</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
+

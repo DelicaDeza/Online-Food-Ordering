@@ -102,8 +102,10 @@ class Order(db.Model):
 
 class Verify(db.Model):
     __tablename__ = 'verify'
-    gmail = db.Column(db.String(255), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    gmail = db.Column(db.String(255))
     otp = db.Column(db.String(10))
+    verified = db.Column(db.Integer)
 
     def __init__(self, gmail, otp):
         self.gmail = gmail

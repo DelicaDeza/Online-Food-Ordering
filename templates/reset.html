@@ -99,8 +99,10 @@
             <input type="password" name="password" placeholder="Current Password" required />
             <input type="password" name="new-password" placeholder="New Password" required />
             <input type="password" name="confirm-password" placeholder="Confirm Password" required />
-            <button type="submit">Reset Password</button>
-        </form>
+            <form action="{{ url_for('reset') }}" method="POST">
+                <button type="submit">Reset Password</abutton>
+            </form>
+                    </form>
     </div>
     <script>
         function showPopupMessage(message) {
@@ -132,26 +134,26 @@
                 // You can send an AJAX request to update the password in the backend
 
                 // Example AJAX request using fetch
-                fetch('/api/reset-password', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        newPassword: newPassword
-                    })
-                })
-                .then(function(response) {
-                    if (response.ok) {
-                        showPopupMessage("Password has been successfully reset!");
-                    } else {
-                        showPopupMessage("Failed to reset password. Please try again later.");
-                    }
-                })
-                .catch(function(error) {
-                    showPopupMessage("An error occurred. Please try again later.");
-                    console.error(error);
-                });
+                // fetch('reset_password', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify({
+                //         newPassword: newPassword
+                //     })
+                // })
+                // .then(function(response) {
+                //     if (response.ok) {
+                //         showPopupMessage("Password has been successfully reset!");
+                //     } else {
+                //         showPopupMessage("Failed to reset password. Please try again later.");
+                //     }
+                // })
+                // .catch(function(error) {
+                //     showPopupMessage("An error occurred. Please try again later.");
+                //     console.error(error);
+                // });
             }
         });
     </script>

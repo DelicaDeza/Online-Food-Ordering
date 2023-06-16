@@ -12,116 +12,84 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-   .btn-block {
-    margin-bottom: 20px;
-    margin-top:60px;
-}
-
-.col-md-4 {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
-}
-
-/* Custom button styles */
-.btn-primary {
-    background-color: rgb(248, 239, 203);
-    color: #ff7b00;
-    border-color: #ff000079;
-    transition: all 0.3s ease-in-out;
-    font-size: 18px;
-    padding: 30px;
-    border-radius: 20px;
-    
-}
-
-.btn-primary:hover {
-    background-color: #ff8800;
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(255, 149, 0, 0.756);
-}
-
-.btn-primary:focus {
-    outline: none;
-    box-shadow: 0 0 10px rgba(255, 238, 0, 0.5);
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.row:last-of-type {
-    justify-content: center;
-    margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-    .col-md-4 {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-
-    </style>
+        .btn-block {
+          margin-bottom: 20px;
+          margin-top: 60px;
+        }
+        
+        .btn-primary {
+          background-color: rgb(248, 239, 203);
+          color: #ff7b00;
+          border-color: #ff000079;
+          transition: all 0.3s ease-in-out;
+          font-size: 18px;
+          padding: 20px;
+          border-radius: 20px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .btn-primary:hover {
+          background-color: #ff8800;
+          color: white;
+          transform: scale(1.1);
+          box-shadow: 0 0 10px rgba(255, 149, 0, 0.756);
+        }
+        
+        .btn-primary:focus {
+          outline: none;
+          box-shadow: 0 0 10px rgba(255, 238, 0, 0.5);
+        }
+        
+        .container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        
+        .row:last-of-type {
+          justify-content: center;
+          margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+          .col-md-3 {
+            flex: 0 0 50%;
+            max-width: 50%;
+          }
+        }
+        </style>
+        
+        
 </head>
 <body>
-  <div class="navcontainer">
-    <div class="row">
-        <div class="col-2"></div>
-        <nav class="navbar navbar-expand-lg bg-light col mt-4">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">DelicaDeza</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-primary" type="submit">Logout</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <div class="col-2"></div>
-    </div>
-</div>
 
 
-
+    {% include 'navbar.html' %}
     
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block">Search</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block"onclick="redirectToAdd()">Add Items</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block" onclick="redirectToEdit()">Edit/Delete Menu Items</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block"onclick="redirectToeda()">Data Analysis</button>
-            </div>
-            
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block">Error Detection</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block">Portfolio</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block">Status</button>
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary btn-block">Inventory</button>
-            </div>
+          <div class="col-md-3">
+            <div class="btn btn-primary btn-block" onclick="redirectToAdd()">Add Items</div>
+          </div>
+          <div class="col-md-3">
+            <div class="btn btn-primary btn-block" onclick="redirectToEdit()">Edit/Delete Menu Items</div>
+          </div>
+          <div class="col-md-3">
+            <div class="btn btn-primary btn-block" onclick="redirectToeda()">Data Analysis</div>
+          </div>
+          <div class="col-md-3">
+            <div class="btn btn-primary btn-block" onclick="redirectToverify()">Verify Order Confirmation</div>
+          </div><br>
+          <div class="col-md-3">
+            <div class="btn btn-primary btn-block" onclick="redirectToupdate()">Update order status</div>
+          </div>
         </div>
-    </div>
+      </div>
+      
 </body>
 <script>
     function redirectToAdd() {
@@ -132,6 +100,12 @@
     }
     function redirectToeda() {
         window.location.href = "{{ url_for('analysis') }}";
+    }
+    function redirectToverify() {
+        window.location.href = "{{ url_for('verify') }}";
+    }
+    function redirectToupdate() {
+        window.location.href = "{{ url_for('updatee') }}";
     }
 </script>
 </html>

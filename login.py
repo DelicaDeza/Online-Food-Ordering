@@ -4,7 +4,6 @@ from food_menu import foodmenu
 from datetime import timedelta
 import bcrypt
 
-
 def index(app):
     if request.method == 'POST':
         email = request.form.get('email')
@@ -28,7 +27,10 @@ def index(app):
                 # Set session expiration to browser close
                 session.permanent = False
 
-            return redirect(url_for('food'))
+            if user.username == "admin1":
+                return redirect(url_for('adminpage'))
+            else:
+                return redirect(url_for('food'))
         else:
             error_message = "Invalid email or password!"
             return render_template('login.html', error_message=error_message)
